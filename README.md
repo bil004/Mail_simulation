@@ -1,45 +1,72 @@
-# JavaFX Mail Server & Client
+# 📬 JavaFX Mail System - Prog3 Project
 
-This repository contains the final project for the "Programmazione III" course [1]. The project consists of two distinct Java applications: a **Mail Server** and a **Mail Client**, running on separate Java Virtual Machines (JVMs) [1, 4]. 
+This repository contains the final laboratory project for the **Programmazione III** course. The system consists of two distinct Java applications: a **Mail Server** and a **Mail Client**. These applications run in separate Java Virtual Machines (JVMs) and communicate exclusively via text-based data over Java Sockets.
 
-The system implements a custom text-based communication protocol over TCP sockets and features a Graphical User Interface (GUI) built with JavaFX [1, 4].
 ---
 
 ## 🏗️ Architecture & Technologies
 
-* **Language & Framework:** Java 20+ and JavaFX [1, 5].
-* **Design Pattern:** Strict adherence to the **Model-View-Controller (MVC)** pattern for both applications [1].
-* **Concurrency:** Multithreaded architecture designed to handle parallel tasks and mutual exclusion for shared resources [6].
-* **Communication:** Communication between Client and Server is handled via standard Java Sockets, transmitting **exclusively text data** (no serialized Java objects) [4]. Sockets are non-permanent: the connection is opened per-request and closed immediately after, similar to HTTP [7].
-* **Data Binding:** The GUI automatically reflects changes in the Model using JavaFX Properties and `ObservableList` [4]. The deprecated `java.util.Observer` and `Observable` classes are strictly avoided [4].
+* **Language & Framework:** Java 23 and JavaFX.
+* **Modular Design:** Both applications are organized into packages to ensure modularity.
+* **Design Pattern:** Strict adherence to the **Model-View-Controller (MVC)** pattern.
+    * No direct communication exists between Views and Models.
+    * Communication is mediated by Controllers or supported by the **Observer-Observable** pattern.
+    * Uses modern JavaFX properties and `ObservableLists` (strictly avoiding deprecated `Observer.java` classes).
+* **Networking:** * Communication is handled via **Non-permanent Sockets** (Request-Response model similar to HTTP).
+    * Data is transmitted exclusively as **textual data** (JSON via Gson).
+* **Concurrency:** * Multi-threaded architecture to parallelize non-sequential tasks.
+    * Strict management of mutual exclusion for shared resources.
+
+
+
+---
 
 ## 📧 Mail Client Features
 
-The Mail Client application allows users to manage their inbox effectively [2]:
-* **Authentication:** Login using an email address, validated locally via Regex [8]. The server verifies if the account actually exists [8].
-* **Inbox Management:** View incoming messages, read full details, and delete emails [9].
-* **Sending Mails:** Create new emails, Reply to sender, Reply-All, and Forward messages to one or multiple recipients [9, 10].
-* **Responsive GUI:** The inbox updates automatically when new messages arrive (without requiring a manual refresh) and notifies the user [11].
-* **Resilience:** If the server goes offline, the client does not crash; it displays an error message and attempts to auto-reconnect when the server comes back online [7]. Connection status is visibly displayed [11].
+The Mail Client allows users to manage their personal inbox (InBox):
+* **Authentication:** Users log in using their email address as a unique identifier.
+    * Syntax is validated locally via **Regular Expressions (Regex)**.
+    * Account existence is verified by the Server.
+* **InBox Operations:** * View message lists and specific message details.
+    * Delete messages from the inbox.
+* **Messaging:** * Compose new emails to one or more recipients.
+    * Reply (to sender) and Reply-All (to all recipients).
+    * Forward messages to new recipients.
+* **Dynamic UI:** * The GUI is partially responsive: it automatically refreshes the message list without manual action.
+    * System notifications alert the user upon receiving new messages.
+* **Resilience:** * The client displays server connection status (Connected/Disconnected).
+    * Handles server downtime gracefully and automatically attempts reconnection when the server is active again.
+
+---
 
 ## 🖥️ Mail Server Features
 
-The Mail Server acts as the backend handling requests from multiple clients simultaneously [1, 6]:
-* **Multi-user Support:** Manages a pre-defined set of email accounts (e.g., 3 accounts for demo purposes) [6, 12].
-* **Data Persistence:** Emails are permanently stored using local files (TXT, Binary, or JSON) since database usage is not permitted [3].
-* **Scalability:** To optimize network usage, the server only transmits *new* messages to clients upon request, rather than sending the entire mailbox every time [13].
-* **Server GUI / Event Logging:** Features a visual interface that logs real-time network events, such as client connections, message deliveries, and routing errors [14]. It validates recipient existence and throws errors for non-existent accounts [12].
+The Mail Server acts as the central hub for email routing and storage:
+* **Account Management:** Supports a fixed number of pre-configured accounts (3 for demo purposes).
+* **Data Persistence:** Messages are stored permanently using **local files** (JSON format) without the use of databases. 
+    * Each email instance includes: ID, sender, receiver(s), subject, text, and timestamp.
+* **Network Efficiency:** To ensure scalability, the server only transmits messages that have not been previously distributed to the client.
+* **Event Logging:** A dedicated GUI displays real-time logs of network interactions, such as connection status, message delivery, and routing errors.
+
+
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-* **Java Development Kit (JDK):** Version 20 or higher [5].
-* **IDE:** IntelliJ IDEA Ultimate is recommended [5].
----
+* **JDK 23** or higher.
+* **IntelliJ IDEA Ultimate** (Recommended).
+* **Maven** for dependency management (Gson, JavaFX).
 
 ### How to Run
-1. Clone this repository to your local machine.
-2. Open the project in your IDE. Note that the Client and the Server must be treated as two separate projects [1].
-3. Run the **Mail Server** application first.
-4. Run one or multiple instances of the **Mail Client** application.
-5. Login with one of the pre-configured email addresses.
+1. Clone the repository.
+2. Open **MailServer** and **MailClient** as two separate IntelliJ IDEA projects.
+3. Launch the **Mail Server** first.
+4. Launch one or more instances of the **Mail Client** and log in with a pre-configured email address (e.g., `giorgio@gmail.com`).
+
+---
+
+## 📝 Exam Information
+* **Oral Discussion Date:** March 25, 2026.
+* **Project Goals:** Demonstrate scalability, efficient resource management, and clean MVC implementation.
