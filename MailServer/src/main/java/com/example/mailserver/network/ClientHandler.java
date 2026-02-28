@@ -1,16 +1,24 @@
 package com.example.mailserver.network;
 
+import com.example.mailserver.model.PersistenceManager;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientHandler implements Runnable{
     private final Socket clientSocket;
+    private final List<String> registeredUsers;
+    private final PersistenceManager pm;
 
-    public ClientHandler(Socket clientSocket) {
+
+    public ClientHandler(Socket clientSocket, List<String> registeredUsers, PersistenceManager pm) {
         this.clientSocket = clientSocket;
+        this.registeredUsers = registeredUsers;
+        this.pm = pm;
     }
 
     @Override
@@ -38,11 +46,7 @@ public class ClientHandler implements Runnable{
         }
     }
 
-    // TEST
     private boolean isUserRegistered(String email) {
-        // In futuro, questo controllerà una lista o dei file JSON sul server
-        return email.equals("giorgio@mia.mail.com") ||
-                email.equals("anna@mia.mail.com") ||
-                email.equals("marco@mia.mail.com");
+        return registeredUsers.contains(email);
     }
 }
