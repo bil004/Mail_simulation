@@ -1,7 +1,8 @@
-package com.example.mailserver.network;
+package com.example.mailserver;
 
 import com.example.mailserver.model.Email;
 import com.example.mailserver.model.PersistenceManager;
+import com.example.mailserver.network.ClientHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;

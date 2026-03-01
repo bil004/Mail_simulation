@@ -12,6 +12,8 @@ public class Email implements Serializable {
     private String message;
     private Date date;
 
+    public Email() {}
+
     public Email(long id, String sender, List<String> receivers, String subject, String message, Date date) {
         this.id = id;
         this.sender = sender;
