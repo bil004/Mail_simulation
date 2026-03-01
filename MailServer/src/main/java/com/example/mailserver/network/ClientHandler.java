@@ -35,12 +35,17 @@ public class ClientHandler implements Runnable{
             if (req == null) return;
 
             // --- SMISTAMENTO COMANDI ---
-            if (req.startsWith("CONNECT|")) {
+            if (req.startsWith("CONNECT|"))
                 handleConnect(req, out);
-            }
-            else if (req.startsWith("SEND|")) {
-                handleSend(req.substring(5), out); // Togliamo "SEND|" e passiamo il resto (il JSON)
-            }
+
+            else if (req.startsWith("SEND|"))
+                handleSend(req.substring(5), out);
+
+            else if (req.startsWith("RECEIVE|"))
+                handleReceive(req, out);
+
+            else if (req.startsWith("DELETE|"))
+                handleDelete(req, out);
         } catch (IOException e) {
             System.err.println("[LOG] Communication error (socket): " + e.getMessage());
         }
@@ -91,6 +96,57 @@ public class ClientHandler implements Runnable{
 
         } catch(Exception ex) {
             sendResponse(out, "ERROR", "Server Error (JSON): " + ex.getMessage());
+        }
+    }
+
+    private void handleReceive(String req, PrintWriter out) {
+        try {
+            String[] parts = req.split("\\|");
+            String userEmail = parts[1];
+            long lastId = Long.parseLong(parts[2]);
+
+            // loading all emails received from the userEmail
+            List<Email> inbox;
+            synchronized (pm) {
+                inbox = pm.loadInbox(userEmail);
+            }
+
+            // Get all emails with ID greater than the client ID
+            List<Email> newEmails = new ArrayList<>();
+            for (Email e: inbox) {
+                if (e.getId() > lastId)
+                    newEmails.add(e);
+            }
+
+            String jsonResponse = gson.toJson(newEmails);
+            out.println(jsonResponse);
+
+            System.out.println("[LOG] Sent "+ newEmails.size() +" messages to " + userEmail);
+        } catch (Exception ex) {
+            out.println("[]");
+            System.err.println("[LOG] Receive Error: " + ex.getMessage());
+        }
+    }
+
+    private void handleDelete(String req, PrintWriter out) {
+        try {
+            String[] parts = req.split("\\|");
+            String userEmail = parts[1];
+            long deleteID = Long.parseLong(parts[2]);
+
+            synchronized (pm) {
+                List<Email> inbox = pm.loadInbox(userEmail);
+                boolean removed = inbox.removeIf(e -> e.getId() == deleteID);
+
+                if (removed) {
+                    pm.saveInbox(userEmail, inbox);
+                    sendResponse(out, "OK", "Email deleted successfully!");
+                    System.out.println("[LOG] Email "+ deleteID + " successfully deleted from " + userEmail + " inbox!");
+                } else
+                    sendResponse(out, "ERROR", "Email not found!");
+            }
+        } catch (Exception ex) {
+            sendResponse(out, "ERROR", "Server Delete Message error: " + ex.getMessage());
         }
     }
 
