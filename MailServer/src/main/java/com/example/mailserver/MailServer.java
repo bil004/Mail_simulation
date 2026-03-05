@@ -49,7 +49,6 @@ public class MailServer extends Application {
         initializeAccounts();
 
         // --- PARTE 3: AVVIO SERVER SOCKET IN BACKGROUND ---
-        // Usiamo un thread separato per non "congelare" la finestra
         new Thread(this::runSocketServer).start();
 
         controller.addLog("SYSTEM", "GUI Server ready: waiting on port " + port + "...");
