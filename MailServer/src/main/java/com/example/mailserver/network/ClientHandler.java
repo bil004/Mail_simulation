@@ -1,5 +1,6 @@
 package com.example.mailserver.network;
 
+import com.example.mailserver.controller.ServerController;
 import com.example.mailserver.model.Email;
 import com.example.mailserver.model.PersistenceManager;
 import com.google.gson.Gson;
@@ -17,13 +18,15 @@ public class ClientHandler implements Runnable{
     private final Socket clientSocket;
     private final List<String> registeredUsers;
     private final PersistenceManager pm;
+    private ServerController controller;
     public final Gson gson = new Gson();
 
 
-    public ClientHandler(Socket clientSocket, List<String> registeredUsers, PersistenceManager pm) {
+    public ClientHandler(Socket clientSocket, List<String> registeredUsers, PersistenceManager pm, ServerController controller) {
         this.clientSocket = clientSocket;
         this.registeredUsers = registeredUsers;
         this.pm = pm;
+        this.controller = controller;
     }
 
     @Override
@@ -92,7 +95,7 @@ public class ClientHandler implements Runnable{
             }
 
             sendResponse(out, "OK", "Email sent successfully to all receivers!");
-            System.out.println("[LOG] Email from "+ e.getSender() +" sent to " + e.getReceivers());
+            controller.addLog("LOG", "Email from "+ e.getSender() +" sent to " + e.getReceivers());
 
         } catch(Exception ex) {
             sendResponse(out, "ERROR", "Server Error (JSON): " + ex.getMessage());
@@ -121,7 +124,7 @@ public class ClientHandler implements Runnable{
             String jsonResponse = gson.toJson(newEmails);
             out.println(jsonResponse);
 
-            System.out.println("[LOG] Sent "+ newEmails.size() +" messages to " + userEmail);
+            controller.addLog("LOG", "Sent " + newEmails.size() +" messages to " + userEmail);
         } catch (Exception ex) {
             out.println("[]");
             System.err.println("[LOG] Receive Error: " + ex.getMessage());
