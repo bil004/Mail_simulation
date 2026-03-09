@@ -46,6 +46,8 @@ public class ClientHandler implements Runnable{
 
             else if (req.startsWith("RECEIVE|"))
                 handleReceive(req, out);
+            else if (req.startsWith("GET_ALL|"))
+                handleGetAll(req, out);
 
             else if (req.startsWith("DELETE|"))
                 handleDelete(req, out);
@@ -62,6 +64,26 @@ public class ClientHandler implements Runnable{
             sendResponse(out, "OK", "User verified");
         } else {
             sendResponse(out, "ERROR", "User not found");
+        }
+    }
+
+    private void handleGetAll(String req, PrintWriter out) {
+        try {
+            String userEmail = req.split("\\|")[1];
+
+            List<Email> inbox;
+
+            synchronized (pm) {
+                inbox = pm.loadInbox(userEmail);
+            }
+
+            String response = gson.toJson(inbox);
+            out.println(response);
+
+            controller.addLog("LOG", inbox.size() + " messages sent successfully to " + userEmail + " inbox.");
+        } catch (Exception ex) {
+            out.println("[]");
+            System.err.println("[LOG] Get All error: " + ex.getMessage());
         }
     }
 
