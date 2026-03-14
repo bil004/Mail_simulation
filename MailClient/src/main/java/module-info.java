@@ -2,6 +2,7 @@ module com.example.mailclient {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires java.desktop;
 
     opens com.example.mailclient.model to com.google.gson;
     opens com.example.mailclient to javafx.graphics, javafx.fxml;

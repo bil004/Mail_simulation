@@ -5,6 +5,7 @@ import com.example.mailserver.model.Email;
 import com.example.mailserver.model.PersistenceManager;
 import com.example.mailserver.network.ClientHandler;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -32,26 +33,31 @@ public class MailServer extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // --- PARTE 1: AVVIO GUI ---
+        // --- PART 1: LOADING GUI ---
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/mailserver/view/server-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 450);
 
-        // Recuperiamo il controller della tabella
-        this.controller = fxmlLoader.getController();
+        // Getting table controller
+        controller = fxmlLoader.getController();
 
         stage.setTitle("📧 Mail Server Monitor");
         stage.setScene(scene);
         stage.show();
 
-        // --- PARTE 2: INIZIALIZZAZIONE LOGICA ---
-        this.pm = new PersistenceManager();
-        this.threadPool = Executors.newCachedThreadPool();
+        // --- PART 2: LOGIC INITIALIZATION ---
+        pm = new PersistenceManager();
+        threadPool = Executors.newCachedThreadPool();
         initializeAccounts();
 
-        // --- PARTE 3: AVVIO SERVER SOCKET IN BACKGROUND ---
+        // --- PART 3: START THE SOCKET SERVER IN BACKGROUND ---
         new Thread(this::runSocketServer).start();
 
         controller.addLog("SYSTEM", "GUI Server ready: waiting on port " + port + "...");
+
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     private void initializeAccounts() {
@@ -68,11 +74,6 @@ public class MailServer extends Application {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (isRunning) {
                 Socket clientSocket = serverSocket.accept();
-
-                javafx.application.Platform.runLater(() ->
-                        controller.addLog("NETWORK", "Connection accepted from: " + clientSocket.getInetAddress())
-                );
-
                 threadPool.execute(new ClientHandler(clientSocket, registeredUsers, pm, controller));
             }
         } catch (IOException e) {

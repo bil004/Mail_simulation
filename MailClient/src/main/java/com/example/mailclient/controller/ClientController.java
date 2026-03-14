@@ -5,16 +5,14 @@ import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
-import java.util.Date;
 import java.util.List;
 
 public class ClientController {
@@ -31,6 +29,7 @@ public class ClientController {
     private final ObservableList<Email> emails = FXCollections.observableArrayList();
     private final Gson gson = new Gson();
     private String userEmail;
+    private boolean offline = false;
 
     public void initUser(String userEmail) {
         this.userEmail = userEmail;
@@ -77,7 +76,28 @@ public class ClientController {
 
     @FXML
     protected void onNewEmailButtonClick() {
-        System.out.println("DEBUG: Apertura finestra composizione...");
+        if (offline) {
+            showError("Server Offline", "Server Offline! Be sure that the server is online and try again.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/mailclient/view/compose-view.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            ComposeController composeController = loader.getController();
+            composeController.setSender(this.userEmail);
+
+            Stage stage = new Stage();
+            stage.setTitle("New Email - From: " + this.userEmail);
+            stage.setScene(new javafx.scene.Scene(root));
+
+            stage.show();
+
+        } catch (IOException ex) {
+            showError("Error Compose Window", "Unable to open compose window.");
+            ex.printStackTrace();
+        }
     }
 
     @FXML
@@ -115,8 +135,6 @@ public class ClientController {
         }).start();
     }
 
-    private boolean offline = false;
-
     // Controlla se il Server è online oppure no
     private void startServerCheck() {
         Thread checkThread = new Thread(() -> {
@@ -145,5 +163,13 @@ public class ClientController {
         });
         checkThread.setDaemon(true);
         checkThread.start();
+    }
+
+    private void showError(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

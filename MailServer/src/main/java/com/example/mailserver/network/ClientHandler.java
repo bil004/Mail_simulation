@@ -4,6 +4,7 @@ import com.example.mailserver.controller.ServerController;
 import com.example.mailserver.model.Email;
 import com.example.mailserver.model.PersistenceManager;
 import com.google.gson.Gson;
+import javafx.application.Platform;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,13 +32,18 @@ public class ClientHandler implements Runnable{
 
     @Override
     public void run() {
+        // Used try-with-resources for code quality and avoid closure problems
         try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));)
         {
             String req = in.readLine();
-            if (req == null) return;
+            if (req == null || req.isEmpty()) return;
 
-            // --- SMISTAMENTO COMANDI ---
+            Platform.runLater(() ->
+                    controller.addLog("NETWORK", "Request: " + req + " from " + clientSocket.getInetAddress())
+            );
+
+            // --- Commands ---
             if (req.startsWith("CONNECT|"))
                 handleConnect(req, out);
 
@@ -46,11 +52,13 @@ public class ClientHandler implements Runnable{
 
             else if (req.startsWith("RECEIVE|"))
                 handleReceive(req, out);
+
             else if (req.startsWith("GET_ALL|"))
                 handleGetAll(req, out);
 
             else if (req.startsWith("DELETE|"))
                 handleDelete(req, out);
+
         } catch (IOException e) {
             System.err.println("[LOG] Communication error (socket): " + e.getMessage());
         }
@@ -80,7 +88,7 @@ public class ClientHandler implements Runnable{
             String response = gson.toJson(inbox);
             out.println(response);
 
-            controller.addLog("LOG", inbox.size() + " messages sent successfully to " + userEmail + " inbox.");
+            controller.addLog("LOG", "Find " + inbox.size() + " messages successfully in " + userEmail + " inbox.");
         } catch (Exception ex) {
             out.println("[]");
             System.err.println("[LOG] Get All error: " + ex.getMessage());
