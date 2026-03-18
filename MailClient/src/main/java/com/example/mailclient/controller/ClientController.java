@@ -2,10 +2,12 @@ package com.example.mailclient.controller;
 
 import com.example.mailclient.model.Email;
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -103,9 +105,79 @@ public class ClientController {
     @FXML
     protected void onDeleteButtonClick() {
         Email selected = emailListView.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            emails.remove(selected);
-            System.out.println("DEBUG: Email eliminata: " + selected.getSubject());
+
+        if (selected == null) {
+            showError("No selection", "Select an Email to delete.");
+            return;
+        }
+
+        // Chiediamo conferma (buona pratica di UX)
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Delete Mail");
+        confirm.setHeaderText("You're going to delete this mail.");
+        confirm.setContentText("Are you sure? (this action is IRREVERSIBLE.)");
+
+        if (confirm.showAndWait().get() == ButtonType.OK) {
+            deleteEmailFromServer(selected);
+        }
+    }
+
+    private void deleteEmailFromServer(Email email) {
+        new Thread(() -> {
+            try (Socket s = new Socket("localhost", 8080);
+                 PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+                 BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()))) {
+
+                // Inviamo il comando DELETE|email|id
+                out.println("DELETE|" + userEmail + "|" + email.getId());
+
+                String response = in.readLine();
+
+                Platform.runLater(() -> {
+                    if (response != null && response.startsWith("OK")) {
+                        emails.remove(email);
+                        messageBody.clear();
+                        lblFrom.setText("");
+                        lblSubject.setText("");
+                    } else {
+                        showError("Errore eliminazione", "Il server non ha potuto eliminare la mail.");
+                    }
+                });
+
+            } catch (Exception e) {
+                Platform.runLater(() -> showError("Errore Connessione", "Impossibile contattare il server per eliminare la mail."));
+            }
+        }).start();
+    }
+
+    @FXML
+    protected void onReplyButtonClick() {
+        Email selected = emailListView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            showError("Nessuna selezione", "Seleziona una mail a cui rispondere.");
+            return;
+        }
+
+        if (offline) {
+            showError("Server Offline", "Non puoi rispondere se il server è offline.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/mailclient/view/compose-view.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Rispondi a: " + selected.getSender());
+            stage.setScene(new Scene(loader.load()));
+
+            ComposeController controller = loader.getController();
+            controller.setupReply(selected, this.userEmail);
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Errore", "Impossibile aprire la finestra di risposta.");
         }
     }
 

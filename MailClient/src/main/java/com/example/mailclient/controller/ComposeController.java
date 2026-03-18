@@ -101,6 +101,21 @@ public class ComposeController {
         }).start();
     }
 
+    public void setupReply(Email originalEmail, String myEmail) {
+        this.senderEmail = myEmail;
+        txtTo.setText(originalEmail.getSender());
+
+        if (!originalEmail.getSubject().toLowerCase().startsWith("re:")) {
+            txtSubject.setText("Re: " + originalEmail.getSubject());
+        } else {
+            txtSubject.setText(originalEmail.getSubject());
+        }
+
+        txtMessage.setText("\n\n" + "--- Response to " + originalEmail.getSender() + " ---" + "\n" + originalEmail.getMessage());
+        txtMessage.requestFocus();
+        txtMessage.selectRange(0, 0);
+    }
+
     @FXML
     public void onCancelButton() {
         closeWindow();

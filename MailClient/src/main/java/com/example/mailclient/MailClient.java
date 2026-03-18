@@ -42,7 +42,6 @@ public class MailClient extends Application {
                 continue;
             }
 
-            // Controllo Server e Utente
             try {
                 if (verifyUserOnServer(emailInput)) {
                     loggedEmail = emailInput;
@@ -80,7 +79,6 @@ public class MailClient extends Application {
             out.println("CONNECT|" + email);
             String response = in.readLine();
 
-            // Restituisce true se il server dice OK, false se dice ERROR
             return response != null && response.startsWith("OK");
         }
     }

@@ -13,8 +13,8 @@
             <items>
                 <Button fx:id="btnNewEmail" mnemonicParsing="false" onAction="#onNewEmailButtonClick" text="➕ New" />
                 <Separator orientation="VERTICAL" />
-                <Button fx:id="btnReply" mnemonicParsing="false" text="↩ Reply" />
-                <Button fx:id="btnDelete" mnemonicParsing="false" style="-fx-text-fill: red;" text="🗑 Delete" />
+                <Button fx:id="btnReply" mnemonicParsing="false" text="↩ Reply" onAction="#onReplyButtonClick"/>
+                <Button fx:id="btnDelete" mnemonicParsing="false" style="-fx-text-fill: red;" text="🗑 Delete" onAction="#onDeleteButtonClick"/>
             </items>
         </ToolBar>
     </top>
