@@ -1,0 +1,95 @@
+\chapter{📬 Java\+FX Mail System -\/ Prog3 Project}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e}{}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e}\index{📬 JavaFX Mail System -\/ Prog3 Project@{📬 JavaFX Mail System -\/ Prog3 Project}}
+\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md0}%
+
+
+This repository contains the final laboratory project for the {\bfseries{Programmazione III}} course. The system consists of two distinct Java applications\+: a {\bfseries{Mail Server}} and a {\bfseries{Mail Client}}. These applications run in separate Java Virtual Machines (JVMs) and communicate exclusively via text-\/based data over Java Sockets.
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{🏗️ Architecture \& Technologies}{🏗️ Architecture \& Technologies}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Language \& Framework\+:}} Java 23 and Java\+FX.
+\item {\bfseries{Modular Design\+:}} Both applications are organized into packages to ensure modularity.
+\item {\bfseries{Design Pattern\+:}} Strict adherence to the {\bfseries{Model-\/\+View-\/\+Controller (MVC)}} pattern.
+\begin{DoxyItemize}
+\item No direct communication exists between Views and Models.
+\item Communication is mediated by Controllers or supported by the {\bfseries{Observer-\/\+Observable}} pattern.
+\item Uses modern Java\+FX properties and {\ttfamily Observable\+Lists} (strictly avoiding deprecated {\ttfamily Observer.\+java} classes).
+\end{DoxyItemize}
+\item {\bfseries{Networking\+:}} \texorpdfstring{$\ast$}{*} Communication is handled via {\bfseries{Non-\/permanent Sockets}} (Request-\/\+Response model similar to HTTP).
+\begin{DoxyItemize}
+\item Data is transmitted exclusively as {\bfseries{textual data}} (JSON via Gson).
+\end{DoxyItemize}
+\item {\bfseries{Concurrency\+:}} \texorpdfstring{$\ast$}{*} Multi-\/threaded architecture to parallelize non-\/sequential tasks.
+\begin{DoxyItemize}
+\item Strict management of mutual exclusion for shared resources.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{📧 Mail Client Features}{📧 Mail Client Features}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md4}
+The Mail Client allows users to manage their personal inbox (In\+Box)\+:
+\begin{DoxyItemize}
+\item {\bfseries{Authentication\+:}} Users log in using their email address as a unique identifier.
+\begin{DoxyItemize}
+\item Syntax is validated locally via {\bfseries{Regular Expressions (Regex)}}.
+\item Account existence is verified by the Server.
+\end{DoxyItemize}
+\item {\bfseries{In\+Box Operations\+:}} \texorpdfstring{$\ast$}{*} View message lists and specific message details.
+\begin{DoxyItemize}
+\item Delete messages from the inbox.
+\end{DoxyItemize}
+\item {\bfseries{Messaging\+:}} \texorpdfstring{$\ast$}{*} Compose new emails to one or more recipients.
+\begin{DoxyItemize}
+\item Reply (to sender) and Reply-\/\+All (to all recipients).
+\item Forward messages to new recipients.
+\end{DoxyItemize}
+\item {\bfseries{Dynamic UI\+:}} \texorpdfstring{$\ast$}{*} The GUI is partially responsive\+: it automatically refreshes the message list without manual action.
+\begin{DoxyItemize}
+\item System notifications alert the user upon receiving new messages.
+\end{DoxyItemize}
+\item {\bfseries{Resilience\+:}} \texorpdfstring{$\ast$}{*} The client displays server connection status (Connected/\+Disconnected).
+\begin{DoxyItemize}
+\item Handles server downtime gracefully and automatically attempts reconnection when the server is active again.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{🖥️ Mail Server Features}{🖥️ Mail Server Features}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md6}
+The Mail Server acts as the central hub for email routing and storage\+:
+\begin{DoxyItemize}
+\item {\bfseries{Account Management\+:}} Supports a fixed number of pre-\/configured accounts (3 for demo purposes).
+\item {\bfseries{Data Persistence\+:}} Messages are stored permanently using {\bfseries{local files}} (JSON format) without the use of databases.
+\begin{DoxyItemize}
+\item Each email instance includes\+: ID, sender, receiver(s), subject, text, and timestamp.
+\end{DoxyItemize}
+\item {\bfseries{Network Efficiency\+:}} To ensure scalability, the server only transmits messages that have not been previously distributed to the client.
+\item {\bfseries{Event Logging\+:}} A dedicated GUI displays real-\/time logs of network interactions, such as connection status, message delivery, and routing errors.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{🚀 Getting Started}{🚀 Getting Started}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md8}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md9}
+
+\begin{DoxyItemize}
+\item {\bfseries{JDK 23}} or higher.
+\item {\bfseries{IntelliJ IDEA Ultimate}} (Recommended).
+\item {\bfseries{Maven}} for dependency management (Gson, Java\+FX).
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{\texorpdfstring{How to Run}{How to Run}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyEnumerate}
+\item Clone the repository.
+\item Open {\bfseries{Mail\+Server}} and {\bfseries{Mail\+Client}} as two separate IntelliJ IDEA projects.
+\item Launch the {\bfseries{Mail Server}} first.
+\item Launch one or more instances of the {\bfseries{Mail Client}} and log in with a pre-\/configured email address (e.\+g., {\ttfamily giorgio@gmail.\+com}).
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md12}{}\doxysection{\texorpdfstring{📝 Exam Information}{📝 Exam Information}}\label{md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyItemize}
+\item {\bfseries{Oral Discussion Date\+:}} March 25, 2026.
+\item {\bfseries{Project Goals\+:}} Demonstrate scalability, efficient resource management, and clean MVC implementation. 
+\end{DoxyItemize}

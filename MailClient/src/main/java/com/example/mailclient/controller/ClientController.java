@@ -17,6 +17,10 @@ import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
+/**
+ * Controller for the main client view.
+ * Handles user interactions and communication with the server.
+ */
 public class ClientController {
     @FXML private ListView<Email> emailListView;
     @FXML private TextArea messageBody;
@@ -27,17 +31,24 @@ public class ClientController {
     @FXML private Circle serverStatusLed;
     @FXML private Button btnNewEmail;
 
-    // Lista "osservabile": se aggiungi una mail qui, la ListView si aggiorna da sola
     private final ObservableList<Email> emails = FXCollections.observableArrayList();
     private final Gson gson = new Gson();
     private String userEmail;
     private boolean offline = false;
 
+    /**
+     * Initializes the user's email and loads their emails from the server.
+     * @param userEmail The email of the logged-in user.
+     */
     public void initUser(String userEmail) {
         this.userEmail = userEmail;
         loadEmailsFromServer();
     }
 
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */
     @FXML
     public void initialize() {
         emailListView.setItems(emails);
@@ -58,6 +69,10 @@ public class ClientController {
         startServerCheck();
     }
 
+    /**
+     * Displays the content of the selected email.
+     * @param email The email to display.
+     */
     private void displayEmail(Email email) {
         if (email == null) return;
         lblFrom.setText(email.getSender());
@@ -66,6 +81,10 @@ public class ClientController {
         messageBody.setText(email.getMessage());
     }
 
+    /**
+     * Updates the server status indicator.
+     * @param online true if the server is online, false otherwise.
+     */
     public void updateStatus(boolean online) {
         if (online) {
             serverStatusLed.setFill(Color.LIMEGREEN);
@@ -76,6 +95,10 @@ public class ClientController {
         }
     }
 
+    /**
+     * Handles the "New Email" button click.
+     * Opens the compose window.
+     */
     @FXML
     protected void onNewEmailButtonClick() {
         if (offline) {
@@ -102,6 +125,10 @@ public class ClientController {
         }
     }
 
+    /**
+     * Handles the "Delete" button click.
+     * Deletes the selected email from the server.
+     */
     @FXML
     protected void onDeleteButtonClick() {
         Email selected = emailListView.getSelectionModel().getSelectedItem();
@@ -122,6 +149,10 @@ public class ClientController {
         }
     }
 
+    /**
+     * Sends a request to the server to delete an email.
+     * @param email The email to delete.
+     */
     private void deleteEmailFromServer(Email email) {
         new Thread(() -> {
             try (Socket s = new Socket("localhost", 8080);
@@ -150,6 +181,10 @@ public class ClientController {
         }).start();
     }
 
+    /**
+     * Handles the "Reply" button click.
+     * Opens the compose window to reply to the selected email.
+     */
     @FXML
     protected void onReplyButtonClick() {
         Email selected = emailListView.getSelectionModel().getSelectedItem();
@@ -181,6 +216,9 @@ public class ClientController {
         }
     }
 
+    /**
+     * Loads the user's emails from the server.
+     */
     private void loadEmailsFromServer() {
         new Thread(() -> {
             try (Socket socket = new Socket("localhost", 8080);
@@ -207,7 +245,9 @@ public class ClientController {
         }).start();
     }
 
-    // Controlla se il Server è online oppure no
+    /**
+     * Starts a background thread to periodically check the server status.
+     */
     private void startServerCheck() {
         Thread checkThread = new Thread(() -> {
             while (true) {
@@ -237,6 +277,11 @@ public class ClientController {
         checkThread.start();
     }
 
+    /**
+     * Shows a graphical error popup.
+     * @param title The title of the error dialog.
+     * @param content The content message of the error dialog.
+     */
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

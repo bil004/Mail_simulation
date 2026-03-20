@@ -1,0 +1,56 @@
+\doxysection{com.\+example.\+mailserver.\+controller.\+Server\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller}{}\label{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller}\index{com.example.mailserver.controller.ServerController@{com.example.mailserver.controller.ServerController}}
+
+
+Controls the server\textquotesingle{}s user interface.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller_ad3ab049f2514e2ed4907cba6cedafa2d}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller_aaddb34a1a6e1410a4a585d6a8f6f4a71}{add\+Log}} (String type, String message)
+\begin{DoxyCompactList}\small\item\em Adds a new log entry to the log table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controls the server\textquotesingle{}s user interface. 
+
+This class manages the Java\+FX components of the server\textquotesingle{}s GUI, primarily handling the display of log events in a Table\+View. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller_aaddb34a1a6e1410a4a585d6a8f6f4a71}\index{com.example.mailserver.controller.ServerController@{com.example.mailserver.controller.ServerController}!addLog@{addLog}}
+\index{addLog@{addLog}!com.example.mailserver.controller.ServerController@{com.example.mailserver.controller.ServerController}}
+\doxysubsubsection{\texorpdfstring{addLog()}{addLog()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller_aaddb34a1a6e1410a4a585d6a8f6f4a71} 
+void com.\+example.\+mailserver.\+controller.\+Server\+Controller.\+add\+Log (\begin{DoxyParamCaption}\item[{String}]{type}{, }\item[{String}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new log entry to the log table. 
+
+This method is thread-\/safe and can be called from any thread. It uses {\ttfamily Platform.\+run\+Later()} to ensure that the GUI is updated on the Java\+FX Application Thread.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the log event (e.\+g., "{}\+SYSTEM"{}, "{}\+ERROR"{}). \\
+\hline
+{\em message} & The log message to be displayed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller_ad3ab049f2514e2ed4907cba6cedafa2d}\index{com.example.mailserver.controller.ServerController@{com.example.mailserver.controller.ServerController}!initialize@{initialize}}
+\index{initialize@{initialize}!com.example.mailserver.controller.ServerController@{com.example.mailserver.controller.ServerController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller_ad3ab049f2514e2ed4907cba6cedafa2d} 
+void com.\+example.\+mailserver.\+controller.\+Server\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the controller. 
+
+This method is automatically called after the FXML file has been loaded. It sets up the cell value factories for the table columns to bind them to the Log\+Event properties. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Mail\+Server/src/main/java/com/example/mailserver/controller/Server\+Controller.\+java\end{DoxyCompactItemize}

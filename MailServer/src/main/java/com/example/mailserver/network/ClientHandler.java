@@ -15,6 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @class ClientHandler
+ * @brief Handles communication with a single client in a separate thread.
+ *
+ * This class is responsible for processing requests from a connected client.
+ * It reads commands from the client's input stream, performs the requested
+ * actions (like sending, receiving, or deleting emails), and sends back a response.
+ * Each `ClientHandler` instance runs on its own thread, allowing the server
+ * to handle multiple clients concurrently.
+ */
 public class ClientHandler implements Runnable{
     private final Socket clientSocket;
     private final List<String> registeredUsers;
@@ -23,6 +33,13 @@ public class ClientHandler implements Runnable{
     public final Gson gson = new Gson();
 
 
+    /**
+     * @brief Constructs a new ClientHandler.
+     * @param clientSocket The socket connected to the client.
+     * @param registeredUsers A list of all registered user emails.
+     * @param pm The persistence manager for data storage.
+     * @param controller The server's GUI controller for logging.
+     */
     public ClientHandler(Socket clientSocket, List<String> registeredUsers, PersistenceManager pm, ServerController controller) {
         this.clientSocket = clientSocket;
         this.registeredUsers = registeredUsers;
@@ -30,6 +47,13 @@ public class ClientHandler implements Runnable{
         this.controller = controller;
     }
 
+    /**
+     * @brief The main execution method for the client handler thread.
+     *
+     * It listens for incoming requests from the client, parses them, and delegates
+     * to the appropriate handler method. It uses a try-with-resources statement
+     * to ensure that the socket and its streams are closed properly.
+     */
     @Override
     public void run() {
         // Used try-with-resources for code quality and avoid closure problems
@@ -64,6 +88,13 @@ public class ClientHandler implements Runnable{
         }
     }
 
+    /**
+     * @brief Handles a "CONNECT" request from a client.
+     *
+     * It checks if the provided email address is in the list of registered users.
+     * @param req The full request string (e.g., "CONNECT|user@example.com").
+     * @param out The PrintWriter to send the response to the client.
+     */
     private void handleConnect(String req, PrintWriter out) {
         String checkEmail = req.split("\\|")[1];
         System.out.println("[LOG] Connection request from: " + checkEmail);
@@ -75,6 +106,13 @@ public class ClientHandler implements Runnable{
         }
     }
 
+    /**
+     * @brief Handles a "GET_ALL" request from a client.
+     *
+     * It loads the entire inbox for the specified user and sends it back as a JSON string.
+     * @param req The full request string (e.g., "GET_ALL|user@example.com").
+     * @param out The PrintWriter to send the response to the client.
+     */
     private void handleGetAll(String req, PrintWriter out) {
         try {
             String userEmail = req.split("\\|")[1];
@@ -95,6 +133,14 @@ public class ClientHandler implements Runnable{
         }
     }
 
+    /**
+     * @brief Handles a "SEND" request from a client.
+     *
+     * It deserializes the email from JSON, validates the recipients, and saves
+     * the email to each recipient's inbox.
+     * @param jsonEmail The email object serialized as a JSON string.
+     * @param out The PrintWriter to send the response to the client.
+     */
     private void handleSend(String jsonEmail, PrintWriter out) {
         try {
             // Reflection with Gson (for decode the email)
@@ -132,6 +178,14 @@ public class ClientHandler implements Runnable{
         }
     }
 
+    /**
+     * @brief Handles a "RECEIVE" request from a client.
+     *
+     * It retrieves all emails for a user that are newer than the last ID
+     * provided by the client.
+     * @param req The full request string (e.g., "RECEIVE|user@example.com|12345").
+     * @param out The PrintWriter to send the response to the client.
+     */
     private void handleReceive(String req, PrintWriter out) {
         try {
             String[] parts = req.split("\\|");
@@ -161,6 +215,13 @@ public class ClientHandler implements Runnable{
         }
     }
 
+    /**
+     * @brief Handles a "DELETE" request from a client.
+     *
+     * It removes an email with a specific ID from the user's inbox.
+     * @param req The full request string (e.g., "DELETE|user@example.com|12345").
+     * @param out The PrintWriter to send the response to the client.
+     */
     private void handleDelete(String req, PrintWriter out) {
         try {
             String[] parts = req.split("\\|");
@@ -183,10 +244,21 @@ public class ClientHandler implements Runnable{
         }
     }
 
+    /**
+     * @brief Checks if an email address belongs to a registered user.
+     * @param email The email address to check.
+     * @return `true` if the user is registered, `false` otherwise.
+     */
     private boolean isUserRegistered(String email) {
         return registeredUsers.contains(email);
     }
 
+    /**
+     * @brief Sends a standardized response to the client.
+     * @param out The PrintWriter to send the response.
+     * @param status The status of the response (e.g., "OK", "ERROR").
+     * @param message An optional message providing more details.
+     */
     private void sendResponse(PrintWriter out, String status, String message) {
         if (message == null || message.isEmpty()) {
             out.println(status);

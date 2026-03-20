@@ -7,18 +7,47 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+/**
+ * @class ServerController
+ * @brief Controls the server's user interface.
+ *
+ * This class manages the JavaFX components of the server's GUI, primarily
+ * handling the display of log events in a TableView.
+ */
 public class ServerController {
+    /**
+     * @brief TableView to display log events.
+     */
     @FXML
     private TableView<LogEvent> logTable;
+    /**
+     * @brief TableColumn for the timestamp of a log event.
+     */
     @FXML
     private TableColumn<LogEvent, String> colTime;
+    /**
+     * @brief TableColumn for the type of a log event.
+     */
     @FXML
     private TableColumn<LogEvent, String> colType;
+    /**
+     * @brief TableColumn for the description of a log event.
+     */
     @FXML
     private TableColumn<LogEvent, String> colDesc;
 
+    /**
+     * @brief ObservableList to store and manage log data for the TableView.
+     */
     private final ObservableList<LogEvent> logData = FXCollections.observableArrayList();
 
+    /**
+     * @brief Initializes the controller.
+     *
+     * This method is automatically called after the FXML file has been loaded.
+     * It sets up the cell value factories for the table columns to bind them
+     * to the LogEvent properties.
+     */
     @FXML
     public void initialize() {
         colTime.setCellValueFactory(cellData -> cellData.getValue().timestampProperty());
@@ -27,8 +56,17 @@ public class ServerController {
         logTable.setItems(logData);
     }
 
+    /**
+     * @brief Adds a new log entry to the log table.
+     *
+     * This method is thread-safe and can be called from any thread. It uses
+     * `Platform.runLater()` to ensure that the GUI is updated on the
+     * JavaFX Application Thread.
+     *
+     * @param type The type of the log event (e.g., "SYSTEM", "ERROR").
+     * @param message The log message to be displayed.
+     */
     public void addLog(String type, String message) {
         javafx.application.Platform.runLater(() -> logData.add(new LogEvent(type, message)));
     }
 }
-

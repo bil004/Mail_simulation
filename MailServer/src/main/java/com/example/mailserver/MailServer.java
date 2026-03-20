@@ -1,36 +1,72 @@
+/**
+ * @mainpage Mail Server
+ *
+ * @section intro_sec Introduction
+ * This is the main class for the Mail Server application.
+ * It manages the JavaFX user interface, the socket server for client connections,
+ * and the initialization of the application's main resources.
+ *
+ * @section author_sec Author
+ *  Bilal Benslimane
+ */
+
+/**
+ * @class MailServer
+ * @brief Main class for the mail server application.
+ *
+ * Extends `javafx.application.Application` to create and manage the user interface.
+ * It starts a socket server in a separate thread to accept client connections
+ * and manages a thread pool to serve multiple clients concurrently.
+ */
 package com.example.mailserver;
 
 import com.example.mailserver.controller.ServerController;
 import com.example.mailserver.model.Email;
 import com.example.mailserver.model.PersistenceManager;
-import com.example.mailserver.network.ClientHandler;
+import com.example.mailserver.network.MultiThreadedServer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class MailServer extends Application {
+    /**
+     * @brief The port on which the socket server listens for incoming connections.
+     */
     private final int port = 8080;
-    private ExecutorService threadPool;
-    private boolean isRunning = true;
+    /**
+     * @brief The multi-threaded server instance.
+     */
+    private MultiThreadedServer server;
+    /**
+     * @brief Persistence manager for loading and saving data.
+     */
     private PersistenceManager pm;
+    /**
+     * @brief Controller for the FXML user interface.
+     */
     private ServerController controller;
 
+    /**
+     * @brief List of registered users in the system.
+     */
     private final List<String> registeredUsers = List.of(
             "giorgio@gmail.com",
             "anna@gmail.com",
             "marco@gmail.com"
     );
 
+    /**
+     * @brief The startup method for the JavaFX application.
+     *
+     * Initializes the user interface, business logic, and starts the socket server.
+     * @param stage The primary stage for this application.
+     * @throws Exception if an error occurs while loading the FXML.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         // --- PART 1: LOADING GUI ---
@@ -46,20 +82,25 @@ public class MailServer extends Application {
 
         // --- PART 2: LOGIC INITIALIZATION ---
         pm = new PersistenceManager();
-        threadPool = Executors.newCachedThreadPool();
         initializeAccounts();
 
-        // --- PART 3: START THE SOCKET SERVER IN BACKGROUND ---
-        new Thread(this::runSocketServer).start();
-
-        controller.addLog("SYSTEM", "GUI Server ready: waiting on port " + port + "...");
+        // --- PART 3: START THE SOCKET SERVER ---
+        server = new MultiThreadedServer(port, controller, pm, registeredUsers);
+        server.start();
 
         stage.setOnCloseRequest(event -> {
+            server.stop();
             Platform.exit();
             System.exit(0);
         });
     }
 
+    /**
+     * @brief Initializes user accounts by loading their inboxes.
+     *
+     * Iterates through the list of registered users, loads their inbox,
+     * and saves it again to ensure data consistency.
+     */
     private void initializeAccounts() {
         for (String email : registeredUsers) {
             List<Email> inbox = pm.loadInbox(email);
@@ -70,21 +111,10 @@ public class MailServer extends Application {
             controller.addLog("STORAGE", "Account loaded successfully!");
     }
 
-    private void runSocketServer() {
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            while (isRunning) {
-                Socket clientSocket = serverSocket.accept();
-                threadPool.execute(new ClientHandler(clientSocket, registeredUsers, pm, controller));
-            }
-        } catch (IOException e) {
-            javafx.application.Platform.runLater(() ->
-                    controller.addLog("ERROR", "FATAL ERROR: " + e.getMessage())
-            );
-        } finally {
-            threadPool.shutdown();
-        }
-    }
-
+    /**
+     * @brief The main method to launch the application.
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         launch();
     }

@@ -1,0 +1,254 @@
+\doxysection{com.\+example.\+mailserver.\+model.\+Email Class Reference}
+\hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{}\label{classcom_1_1example_1_1mailserver_1_1model_1_1_email}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+
+
+Represents an email message.  
+
+
+Inheritance diagram for com.\+example.\+mailserver.\+model.\+Email\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcom_1_1example_1_1mailserver_1_1model_1_1_email}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a837f630feae13d64dd202fd9b0ea72b5}\label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a837f630feae13d64dd202fd9b0ea72b5} 
+{\bfseries Email} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a7b10d0c5aa6708297b47f92e0bd9cf48}{Email}} (long id, String sender, List$<$ String $>$ receivers, String subject, String message, Date date)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email} with all its properties. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_adad4c891178f64ad8518b5e6e12c7702}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Gets the unique ID of the email. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8824fed3411d99ad986e5d107c7c95d0}{set\+Id}} (long id)
+\begin{DoxyCompactList}\small\item\em Sets the unique ID of the email. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a28471f48ff78abab6d9c3ba6f4a9889f}{get\+Sender}} ()
+\begin{DoxyCompactList}\small\item\em Gets the sender\textquotesingle{}s email address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_aa020885fa5c587713a564578e6ed0a71}{set\+Sender}} (String sender)
+\begin{DoxyCompactList}\small\item\em Sets the sender\textquotesingle{}s email address. \end{DoxyCompactList}\item 
+List$<$ String $>$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8674f172b223e78227e4511bcacd5399}{get\+Receivers}} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of recipient email addresses. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a38a0d30f5e9137da22b58f99bd077fcf}{set\+Receivers}} (List$<$ String $>$ receivers)
+\begin{DoxyCompactList}\small\item\em Sets the list of recipient email addresses. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a62a61cbc9cc301cf9485f80f981c601d}{get\+Subject}} ()
+\begin{DoxyCompactList}\small\item\em Gets the subject of the email. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_ae32f08210031a91710b4728e9942776b}{set\+Subject}} (String subject)
+\begin{DoxyCompactList}\small\item\em Sets the subject of the email. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8e73ab0537bf2a50edfcbe009780ef88}{get\+Message}} ()
+\begin{DoxyCompactList}\small\item\em Gets the body/content of the email. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a00e1c7a6d2b53e83890d5e74f7229328}{set\+Message}} (String message)
+\begin{DoxyCompactList}\small\item\em Sets the body/content of the email. \end{DoxyCompactList}\item 
+Date \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a43d09ef9c75bef7179ef249ab257b2b7}{get\+Date}} ()
+\begin{DoxyCompactList}\small\item\em Gets the date the email was sent. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a1cb1da308143412154550c07b77181e8}{set\+Date}} (Date date)
+\begin{DoxyCompactList}\small\item\em Sets the date the email was sent. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an email message. 
+
+This class is a simple data structure (POJO) that holds all the information related to an email, such as sender, receivers, subject, and content. It implements {\ttfamily Serializable} to allow its instances to be converted into a byte stream. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a7b10d0c5aa6708297b47f92e0bd9cf48}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!Email@{Email}}
+\index{Email@{Email}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{Email()}{Email()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a7b10d0c5aa6708297b47f92e0bd9cf48} 
+com.\+example.\+mailserver.\+model.\+Email.\+Email (\begin{DoxyParamCaption}\item[{long}]{id}{, }\item[{String}]{sender}{, }\item[{List$<$ String $>$}]{receivers}{, }\item[{String}]{subject}{, }\item[{String}]{message}{, }\item[{Date}]{date}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email} with all its properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The unique ID. \\
+\hline
+{\em sender} & The sender\textquotesingle{}s address. \\
+\hline
+{\em receivers} & The list of recipients. \\
+\hline
+{\em subject} & The email subject. \\
+\hline
+{\em message} & The email body. \\
+\hline
+{\em date} & The sending date. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a43d09ef9c75bef7179ef249ab257b2b7}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!getDate@{getDate}}
+\index{getDate@{getDate}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{getDate()}{getDate()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a43d09ef9c75bef7179ef249ab257b2b7} 
+Date com.\+example.\+mailserver.\+model.\+Email.\+get\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the date the email was sent. 
+
+\begin{DoxyReturn}{Returns}
+The sending date. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_adad4c891178f64ad8518b5e6e12c7702}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!getId@{getId}}
+\index{getId@{getId}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_adad4c891178f64ad8518b5e6e12c7702} 
+long com.\+example.\+mailserver.\+model.\+Email.\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the unique ID of the email. 
+
+\begin{DoxyReturn}{Returns}
+The email ID. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8e73ab0537bf2a50edfcbe009780ef88}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{getMessage()}{getMessage()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8e73ab0537bf2a50edfcbe009780ef88} 
+String com.\+example.\+mailserver.\+model.\+Email.\+get\+Message (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the body/content of the email. 
+
+\begin{DoxyReturn}{Returns}
+The email message. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8674f172b223e78227e4511bcacd5399}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!getReceivers@{getReceivers}}
+\index{getReceivers@{getReceivers}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{getReceivers()}{getReceivers()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8674f172b223e78227e4511bcacd5399} 
+List$<$ String $>$ com.\+example.\+mailserver.\+model.\+Email.\+get\+Receivers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the list of recipient email addresses. 
+
+\begin{DoxyReturn}{Returns}
+A list of recipient emails. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a28471f48ff78abab6d9c3ba6f4a9889f}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!getSender@{getSender}}
+\index{getSender@{getSender}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{getSender()}{getSender()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a28471f48ff78abab6d9c3ba6f4a9889f} 
+String com.\+example.\+mailserver.\+model.\+Email.\+get\+Sender (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the sender\textquotesingle{}s email address. 
+
+\begin{DoxyReturn}{Returns}
+The sender\textquotesingle{}s email. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a62a61cbc9cc301cf9485f80f981c601d}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!getSubject@{getSubject}}
+\index{getSubject@{getSubject}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{getSubject()}{getSubject()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a62a61cbc9cc301cf9485f80f981c601d} 
+String com.\+example.\+mailserver.\+model.\+Email.\+get\+Subject (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the subject of the email. 
+
+\begin{DoxyReturn}{Returns}
+The email subject. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a1cb1da308143412154550c07b77181e8}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!setDate@{setDate}}
+\index{setDate@{setDate}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{setDate()}{setDate()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a1cb1da308143412154550c07b77181e8} 
+void com.\+example.\+mailserver.\+model.\+Email.\+set\+Date (\begin{DoxyParamCaption}\item[{Date}]{date}{}\end{DoxyParamCaption})}
+
+
+
+Sets the date the email was sent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & The new sending date. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8824fed3411d99ad986e5d107c7c95d0}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!setId@{setId}}
+\index{setId@{setId}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a8824fed3411d99ad986e5d107c7c95d0} 
+void com.\+example.\+mailserver.\+model.\+Email.\+set\+Id (\begin{DoxyParamCaption}\item[{long}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Sets the unique ID of the email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The new email ID. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a00e1c7a6d2b53e83890d5e74f7229328}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!setMessage@{setMessage}}
+\index{setMessage@{setMessage}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{setMessage()}{setMessage()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a00e1c7a6d2b53e83890d5e74f7229328} 
+void com.\+example.\+mailserver.\+model.\+Email.\+set\+Message (\begin{DoxyParamCaption}\item[{String}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Sets the body/content of the email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The new email message. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a38a0d30f5e9137da22b58f99bd077fcf}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!setReceivers@{setReceivers}}
+\index{setReceivers@{setReceivers}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{setReceivers()}{setReceivers()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_a38a0d30f5e9137da22b58f99bd077fcf} 
+void com.\+example.\+mailserver.\+model.\+Email.\+set\+Receivers (\begin{DoxyParamCaption}\item[{List$<$ String $>$}]{receivers}{}\end{DoxyParamCaption})}
+
+
+
+Sets the list of recipient email addresses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receivers} & The new list of recipients. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_aa020885fa5c587713a564578e6ed0a71}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!setSender@{setSender}}
+\index{setSender@{setSender}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{setSender()}{setSender()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_aa020885fa5c587713a564578e6ed0a71} 
+void com.\+example.\+mailserver.\+model.\+Email.\+set\+Sender (\begin{DoxyParamCaption}\item[{String}]{sender}{}\end{DoxyParamCaption})}
+
+
+
+Sets the sender\textquotesingle{}s email address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & The new sender\textquotesingle{}s email. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_email_ae32f08210031a91710b4728e9942776b}\index{com.example.mailserver.model.Email@{com.example.mailserver.model.Email}!setSubject@{setSubject}}
+\index{setSubject@{setSubject}!com.example.mailserver.model.Email@{com.example.mailserver.model.Email}}
+\doxysubsubsection{\texorpdfstring{setSubject()}{setSubject()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_email_ae32f08210031a91710b4728e9942776b} 
+void com.\+example.\+mailserver.\+model.\+Email.\+set\+Subject (\begin{DoxyParamCaption}\item[{String}]{subject}{}\end{DoxyParamCaption})}
+
+
+
+Sets the subject of the email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subject} & The new email subject. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Mail\+Server/src/main/java/com/example/mailserver/model/Email.\+java\end{DoxyCompactItemize}

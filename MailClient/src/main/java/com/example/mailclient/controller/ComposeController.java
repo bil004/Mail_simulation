@@ -21,6 +21,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller for the email composition window.
+ * Handles sending new emails and replying to existing ones.
+ */
 public class ComposeController {
     @FXML
     private TextField txtTo;
@@ -32,10 +36,18 @@ public class ComposeController {
     private String senderEmail;
     private Gson gson = new Gson();
 
+    /**
+     * Sets the sender's email address.
+     * @param senderEmail The email address of the sender.
+     */
     public void setSender(String senderEmail) {
         this.senderEmail = senderEmail;
     }
 
+    /**
+     * Handles the "Send" button click.
+     * Validates the input fields and sends the email.
+     */
     @FXML
     public void onSendClick() {
         if (!isServerReachable()) {
@@ -77,6 +89,10 @@ public class ComposeController {
         sendEmailToReceiver(emailToSend);
     }
 
+    /**
+     * Sends the email to the server.
+     * @param email The email to send.
+     */
     public void sendEmailToReceiver(Email email) {
         new Thread(() -> {
             try (Socket s = new Socket("localhost", 8080);
@@ -101,6 +117,11 @@ public class ComposeController {
         }).start();
     }
 
+    /**
+     * Sets up the compose window for a reply.
+     * @param originalEmail The original email to reply to.
+     * @param myEmail The email of the user replying.
+     */
     public void setupReply(Email originalEmail, String myEmail) {
         this.senderEmail = myEmail;
         txtTo.setText(originalEmail.getSender());
@@ -116,16 +137,28 @@ public class ComposeController {
         txtMessage.selectRange(0, 0);
     }
 
+    /**
+     * Handles the "Cancel" button click.
+     * Closes the compose window.
+     */
     @FXML
     public void onCancelButton() {
         closeWindow();
     }
 
+    /**
+     * Closes the current window.
+     */
     private void closeWindow() {
         Stage stage = (Stage) txtTo.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Shows a graphical error popup.
+     * @param title The title of the error dialog.
+     * @param content The content message of the error dialog.
+     */
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -134,6 +167,11 @@ public class ComposeController {
         alert.showAndWait();
     }
 
+    /**
+     * Shows a graphical information popup.
+     * @param title The title of the info dialog.
+     * @param content The content message of the info dialog.
+     */
     private void showInfo(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -142,6 +180,10 @@ public class ComposeController {
         alert.showAndWait();
     }
 
+    /**
+     * Checks if the server is reachable.
+     * @return true if the server is reachable, false otherwise.
+     */
     private boolean isServerReachable() {
         try (Socket s = new Socket()) {
             s.connect(new InetSocketAddress("localhost", 8080), 500); // Timeout 500ms

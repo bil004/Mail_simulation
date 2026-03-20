@@ -10,14 +10,39 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @class PersistenceManager
+ * @brief Manages the loading and saving of user data to the file system.
+ *
+ * This class handles the serialization and deserialization of user inboxes
+ * to and from JSON files. It ensures that data is persisted across server
+ * restarts. All file operations are synchronized to prevent race conditions.
+ */
 public class PersistenceManager {
+    /**
+     * @brief The base directory where user data is stored.
+     */
     private static final String BASE_PATH = "server_data/";
 
+    /**
+     * @brief Constructs a new PersistenceManager.
+     *
+     * It ensures that the base storage directory exists, creating it if necessary.
+     */
     public PersistenceManager() {
         File dir = new File(BASE_PATH);
         if (!dir.exists()) dir.mkdir();
     }
 
+    /**
+     * @brief Loads a user's inbox from a JSON file.
+     *
+     * If the file for the user does not exist, it returns an empty list.
+     * This method is synchronized to ensure thread-safe file access.
+     *
+     * @param userEmail The email address of the user whose inbox is to be loaded.
+     * @return A list of Email objects representing the user's inbox.
+     */
     public synchronized List<Email> loadInbox(String userEmail) {
         File f = new File(BASE_PATH + userEmail + ".json");
         if (!f.exists()) return new ArrayList<>();
@@ -28,11 +53,20 @@ public class PersistenceManager {
             return (list != null) ? list : new ArrayList<>();
         }
         catch (IOException e) {
-            System.err.println("[SERVER] FATAL ERROR caricamento " + userEmail + ": " + e.getMessage());
+            System.err.println("[SERVER] FATAL ERROR loading " + userEmail + ": " + e.getMessage());
             return new ArrayList<>();
         }
     }
 
+    /**
+     * @brief Saves a user's inbox to a JSON file.
+     *
+     * The list of emails is serialized to JSON with pretty printing for readability.
+     * This method is synchronized to ensure thread-safe file access.
+     *
+     * @param userEmail The email address of the user whose inbox is to be saved.
+     * @param inbox The list of Email objects to be saved.
+     */
     public synchronized void saveInbox(String userEmail, List<Email> inbox) {
         try (Writer writer = new FileWriter(BASE_PATH + userEmail + ".json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -1,0 +1,73 @@
+\doxysection{com.\+example.\+mailclient.\+controller.\+Compose\+Controller Class Reference}
+\hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller}{}\label{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller}\index{com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_aa0395e7b2dd929ffd99c020f4b0fe068}{set\+Sender}} (String sender\+Email)
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a177323d54df3bcfd7fa873160df1aa2c}{on\+Send\+Click}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a8618424afd3bae2d188d9edca0dee55f}{send\+Email\+To\+Receiver}} (\mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1model_1_1_email}{Email}} email)
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_aae649119334e28ff271ce85a712df45e}{setup\+Reply}} (\mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1model_1_1_email}{Email}} original\+Email, String my\+Email)
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a1e850773de29ab3c29441d127d60c295}{on\+Cancel\+Button}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for the email composition window. Handles sending new emails and replying to existing ones. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a1e850773de29ab3c29441d127d60c295}\index{com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}!onCancelButton@{onCancelButton}}
+\index{onCancelButton@{onCancelButton}!com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}}
+\doxysubsubsection{\texorpdfstring{onCancelButton()}{onCancelButton()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a1e850773de29ab3c29441d127d60c295} 
+void com.\+example.\+mailclient.\+controller.\+Compose\+Controller.\+on\+Cancel\+Button (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Handles the "{}\+Cancel"{} button click. Closes the compose window. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a177323d54df3bcfd7fa873160df1aa2c}\index{com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}!onSendClick@{onSendClick}}
+\index{onSendClick@{onSendClick}!com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}}
+\doxysubsubsection{\texorpdfstring{onSendClick()}{onSendClick()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a177323d54df3bcfd7fa873160df1aa2c} 
+void com.\+example.\+mailclient.\+controller.\+Compose\+Controller.\+on\+Send\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Handles the "{}\+Send"{} button click. Validates the input fields and sends the email. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a8618424afd3bae2d188d9edca0dee55f}\index{com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}!sendEmailToReceiver@{sendEmailToReceiver}}
+\index{sendEmailToReceiver@{sendEmailToReceiver}!com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}}
+\doxysubsubsection{\texorpdfstring{sendEmailToReceiver()}{sendEmailToReceiver()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_a8618424afd3bae2d188d9edca0dee55f} 
+void com.\+example.\+mailclient.\+controller.\+Compose\+Controller.\+send\+Email\+To\+Receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1model_1_1_email}{Email}}}]{email}{}\end{DoxyParamCaption})}
+
+Sends the email to the server. 
+\begin{DoxyParams}{Parameters}
+{\em email} & The email to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_aa0395e7b2dd929ffd99c020f4b0fe068}\index{com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}!setSender@{setSender}}
+\index{setSender@{setSender}!com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}}
+\doxysubsubsection{\texorpdfstring{setSender()}{setSender()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_aa0395e7b2dd929ffd99c020f4b0fe068} 
+void com.\+example.\+mailclient.\+controller.\+Compose\+Controller.\+set\+Sender (\begin{DoxyParamCaption}\item[{String}]{sender\+Email}{}\end{DoxyParamCaption})}
+
+Sets the sender\textquotesingle{}s email address. 
+\begin{DoxyParams}{Parameters}
+{\em sender\+Email} & The email address of the sender. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_aae649119334e28ff271ce85a712df45e}\index{com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}!setupReply@{setupReply}}
+\index{setupReply@{setupReply}!com.example.mailclient.controller.ComposeController@{com.example.mailclient.controller.ComposeController}}
+\doxysubsubsection{\texorpdfstring{setupReply()}{setupReply()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_compose_controller_aae649119334e28ff271ce85a712df45e} 
+void com.\+example.\+mailclient.\+controller.\+Compose\+Controller.\+setup\+Reply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1model_1_1_email}{Email}}}]{original\+Email}{, }\item[{String}]{my\+Email}{}\end{DoxyParamCaption})}
+
+Sets up the compose window for a reply. 
+\begin{DoxyParams}{Parameters}
+{\em original\+Email} & The original email to reply to. \\
+\hline
+{\em my\+Email} & The email of the user replying. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/example/mailclient/controller/Compose\+Controller.\+java\end{DoxyCompactItemize}

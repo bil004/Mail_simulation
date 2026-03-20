@@ -16,8 +16,21 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Optional;
 
+/**
+ * Main class for the Mail Client application.
+ * It handles the user login and initializes the main client view.
+ */
 public class MailClient extends Application {
 
+    /**
+     * The main entry point for all JavaFX applications.
+     * This method is called after the init method has returned, and after the system is ready for the application to begin running.
+     * It handles the user login process and then shows the main client view.
+     *
+     * @param stage the primary stage for this application, onto which
+     *              the application scene can be set.
+     * @throws Exception if something goes wrong.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         String loggedEmail = "";
@@ -68,8 +81,11 @@ public class MailClient extends Application {
     }
 
     /**
-     * Tenta la connessione al server.
-     * @throws IOException se il server è irraggiungibile
+     * Verifies the user's email by connecting to the server.
+     *
+     * @param email The email to verify.
+     * @return true if the user is valid, false otherwise.
+     * @throws IOException if the server is unreachable.
      */
     private boolean verifyUserOnServer(String email) throws IOException {
         try (Socket socket = new Socket("localhost", 8080);
@@ -84,7 +100,9 @@ public class MailClient extends Application {
     }
 
     /**
-     * Mostra un popup di errore grafico
+     * Shows a graphical error popup.
+     * @param title The title of the error dialog.
+     * @param content The content message of the error dialog.
      */
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -94,6 +112,10 @@ public class MailClient extends Application {
         alert.showAndWait();
     }
 
+    /**
+     * The main method of the application.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         launch();
     }

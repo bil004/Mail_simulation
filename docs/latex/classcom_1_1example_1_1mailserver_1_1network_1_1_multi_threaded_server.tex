@@ -1,0 +1,59 @@
+\doxysection{com.\+example.\+mailserver.\+network.\+Multi\+Threaded\+Server Class Reference}
+\hypertarget{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server}{}\label{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server}\index{com.example.mailserver.network.MultiThreadedServer@{com.example.mailserver.network.MultiThreadedServer}}
+
+
+A simple multi-\/threaded server for handling client connections.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server_ae5a821aed03c7052796e81f73261129c}{Multi\+Threaded\+Server}} (int port, \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller}{Server\+Controller}} controller)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server}{Multi\+Threaded\+Server}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server_ae4672c5bb12609403a3870afb630f282}{start}} ()
+\begin{DoxyCompactList}\small\item\em Starts the server\textquotesingle{}s main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple multi-\/threaded server for handling client connections. 
+
+This class sets up a {\ttfamily Server\+Socket} to listen for incoming client connections on a specified port. For each connection, it creates a new {\ttfamily \doxylink{classcom_1_1example_1_1mailserver_1_1network_1_1_client_handler}{Client\+Handler}} and submits it to a thread pool for concurrent processing. \begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000001}{Deprecated}}]This class is not actively used in the main application. The server logic is handled directly within the {\ttfamily \doxylink{classcom_1_1example_1_1mailserver_1_1_mail_server}{com.\+example.\+mailserver.\+Mail\+Server}} class. \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server_ae5a821aed03c7052796e81f73261129c}\index{com.example.mailserver.network.MultiThreadedServer@{com.example.mailserver.network.MultiThreadedServer}!MultiThreadedServer@{MultiThreadedServer}}
+\index{MultiThreadedServer@{MultiThreadedServer}!com.example.mailserver.network.MultiThreadedServer@{com.example.mailserver.network.MultiThreadedServer}}
+\doxysubsubsection{\texorpdfstring{MultiThreadedServer()}{MultiThreadedServer()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server_ae5a821aed03c7052796e81f73261129c} 
+com.\+example.\+mailserver.\+network.\+Multi\+Threaded\+Server.\+Multi\+Threaded\+Server (\begin{DoxyParamCaption}\item[{int}]{port}{, }\item[{\mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1controller_1_1_server_controller}{Server\+Controller}}}]{controller}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server}{Multi\+Threaded\+Server}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The port to listen on. \\
+\hline
+{\em controller} & The server\textquotesingle{}s GUI controller. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server_ae4672c5bb12609403a3870afb630f282}\index{com.example.mailserver.network.MultiThreadedServer@{com.example.mailserver.network.MultiThreadedServer}!start@{start}}
+\index{start@{start}!com.example.mailserver.network.MultiThreadedServer@{com.example.mailserver.network.MultiThreadedServer}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server_ae4672c5bb12609403a3870afb630f282} 
+void com.\+example.\+mailserver.\+network.\+Multi\+Threaded\+Server.\+start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Starts the server\textquotesingle{}s main loop. 
+
+It creates a thread pool and a server socket, then enters a loop to accept client connections. Each new connection is passed to a {\ttfamily \doxylink{classcom_1_1example_1_1mailserver_1_1network_1_1_client_handler}{Client\+Handler}} in the thread pool. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Mail\+Server/src/main/java/com/example/mailserver/network/Multi\+Threaded\+Server.\+java\end{DoxyCompactItemize}
