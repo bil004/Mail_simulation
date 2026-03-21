@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mail_Simulation: Mail Server</title>
+<title>Mail Simulation: Client-Server Email System</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Mail_Simulation
+   <div id="projectname">Mail Simulation
    </div>
    <div id="projectbrief">2025/26 project for the Prog III course</div>
   </td>
@@ -85,15 +85,26 @@ $(function(){ initResizable(false); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Mail Server </div></div>
+  <div class="headertitle"><div class="title">Client-Server Email System </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
 Introduction</h1>
-<p>This is the main class for the Mail Server application. It manages the JavaFX user interface, the socket server for client connections, and the initialization of the application's main resources.</p>
-<h1><a class="anchor" id="author_sec"></a>
-Author</h1>
-<p>Bilal Benslimane </p>
+<p>Welcome to the documentation for the Programming 3 project. The system is composed of two main modules:</p><ul>
+<li><b>MailServer:</b> Manages data persistence (JSON) and multiple connections.</li>
+<li><b>MailClient:</b> User interface for managing emails (Send, Receive, Reply, Delete).</li>
+</ul>
+<h1><a class="anchor" id="arch_sec"></a>
+Architecture</h1>
+<p>The project uses a Model-View-Controller (MVC) architecture and communication based on TCP sockets with a custom text-based protocol.</p>
+<h1><a class="anchor" id="tech_sec"></a>
+Technologies Used</h1>
+<ul>
+<li>JavaFX for the graphical user interface.</li>
+<li>GSON for data serialization.</li>
+<li>ThreadPool (ExecutorService) for server-side multithreading.</li>
+</ul>
+<dl class="section author"><dt>Author</dt><dd>Bilal Benslimane </dd></dl>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

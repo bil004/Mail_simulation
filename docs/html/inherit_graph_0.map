@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,47,91,73"/>
+<area shape="rect" id="Node000001" href="$classcom_1_1example_1_1mailclient_1_1_mail_client.html" title=" " alt="" coords="141,5,328,48"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="105,47,143,42,138,45,107,52"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1example_1_1mailserver_1_1_mail_server.html" title=" " alt="" coords="139,72,330,115"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="106,68,141,76,136,77,106,73"/>
+</map>

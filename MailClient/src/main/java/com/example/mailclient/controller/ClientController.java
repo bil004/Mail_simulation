@@ -257,11 +257,14 @@ public class ClientController {
                             updateStatus(true);
                             loadEmailsFromServer();
                         });
-
                         offline = false;
-                    }
-                    else javafx.application.Platform.runLater(() -> updateStatus(true));
+                    } else {
+                        javafx.application.Platform.runLater(() -> updateStatus(true));
 
+                        if (userEmail != null) {
+                            checkForNewEmails();
+                        }
+                    }
                 }
                 catch (IOException e) {
                     offline = true;
@@ -275,6 +278,34 @@ public class ClientController {
         });
         checkThread.setDaemon(true);
         checkThread.start();
+    }
+
+    private void checkForNewEmails() {
+        new Thread(() -> {
+            long lastId = emails.stream().mapToLong(Email::getId).max().orElse(0);
+
+            try (Socket socket = new Socket("localhost", 8080);
+                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+                out.println("RECEIVE|" + userEmail + "|" + lastId);
+                String jsonResponse = in.readLine();
+
+                if (jsonResponse != null && !jsonResponse.equals("[]")) {
+                    Email[] newArray = gson.fromJson(jsonResponse, Email[].class);
+
+                    javafx.application.Platform.runLater(() -> {
+                        for (Email e : newArray) {
+                            if (emails.stream().noneMatch(existing -> existing.getId() == e.getId())) {
+                                emails.add(0, e);
+                            }
+                        }
+                    });
+                }
+            } catch (IOException e) {
+                System.err.println("[DEBUG] Errore socket: " + e.getMessage());
+            }
+        }).start();
     }
 
     /**

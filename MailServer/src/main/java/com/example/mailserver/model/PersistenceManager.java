@@ -1,6 +1,5 @@
 package com.example.mailserver.model;
 
-import com.example.mailserver.model.Email;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

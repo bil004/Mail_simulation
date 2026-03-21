@@ -1,16 +1,4 @@
 /**
- * @mainpage Mail Server
- *
- * @section intro_sec Introduction
- * This is the main class for the Mail Server application.
- * It manages the JavaFX user interface, the socket server for client connections,
- * and the initialization of the application's main resources.
- *
- * @section author_sec Author
- *  Bilal Benslimane
- */
-
-/**
  * @class MailServer
  * @brief Main class for the mail server application.
  *
@@ -39,7 +27,7 @@ public class MailServer extends Application {
      */
     private final int port = 8080;
     /**
-     * @brief The multi-threaded server instance.
+     * @brief The multithreaded server instance.
      */
     private MultiThreadedServer server;
     /**

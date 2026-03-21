@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['run_0',['run',['../classcom_1_1example_1_1mailserver_1_1network_1_1_client_handler.html#ae8b7a69be553da5fffd4df1afc7fde35',1,'com::example::mailserver::network::ClientHandler']]]
+  ['persistencemanager_0',['PersistenceManager',['../classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager.html#a7cdd00397f496998a8af75cb26401347',1,'com::example::mailserver::model::PersistenceManager']]]
 ];

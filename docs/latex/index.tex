@@ -1,5 +1,19 @@
-\chapter{Mail Server}
-\hypertarget{index}{}\label{index}\index{Mail Server@{Mail Server}}
+\chapter{Client-\/\+Server Email System}
+\hypertarget{index}{}\label{index}\index{Client-\/Server Email System@{Client-\/Server Email System}}
 \hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro_sec}
-This is the main class for the Mail Server application. It manages the Java\+FX user interface, the socket server for client connections, and the initialization of the application\textquotesingle{}s main resources.\hypertarget{index_author_sec}{}\doxysection{\texorpdfstring{Author}{Author}}\label{index_author_sec}
+Welcome to the documentation for the Programming 3 project. The system is composed of two main modules\+:
+\begin{DoxyItemize}
+\item {\bfseries{Mail\+Server\+:}} Manages data persistence (JSON) and multiple connections.
+\item {\bfseries{Mail\+Client\+:}} User interface for managing emails (Send, Receive, Reply, Delete).
+\end{DoxyItemize}\hypertarget{index_arch_sec}{}\doxysection{\texorpdfstring{Architecture}{Architecture}}\label{index_arch_sec}
+The project uses a Model-\/\+View-\/\+Controller (MVC) architecture and communication based on TCP sockets with a custom text-\/based protocol.\hypertarget{index_tech_sec}{}\doxysection{\texorpdfstring{Technologies Used}{Technologies Used}}\label{index_tech_sec}
+
+\begin{DoxyItemize}
+\item Java\+FX for the graphical user interface.
+\item GSON for data serialization.
+\item Thread\+Pool (Executor\+Service) for server-\/side multithreading.
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
 Bilal Benslimane 
+\end{DoxyAuthor}

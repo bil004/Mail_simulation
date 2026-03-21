@@ -1,0 +1,7 @@
+<map id="com.example.mailserver.network.ClientHandler" name="com.example.mailserver.network.ClientHandler">
+<area shape="rect" id="Node000001" title="Handles communication with a single client in a separate thread." alt="" coords="5,139,212,245"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="37,5,103,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,87,98,139,93,139,81,91"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="126,5,168,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,72,129,124,124,121,137,77"/>
+</map>

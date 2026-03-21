@@ -1,0 +1,5 @@
+<map id="com.example.mailserver.network.MultiThreadedServer" name="com.example.mailserver.network.MultiThreadedServer">
+<area shape="rect" id="Node000001" title="A multi&#45;threaded server for handling client connections." alt="" coords="5,123,212,272"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="76,5,142,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,87,111,123,106,122,108,92"/>
+</map>

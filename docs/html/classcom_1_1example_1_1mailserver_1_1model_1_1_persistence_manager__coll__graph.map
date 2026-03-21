@@ -1,0 +1,3 @@
+<map id="com.example.mailserver.model.PersistenceManager" name="com.example.mailserver.model.PersistenceManager">
+<area shape="rect" id="Node000001" title="Manages the loading and saving of user data to the file system." alt="" coords="5,5,201,133"/>
+</map>
