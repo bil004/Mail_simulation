@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['run_0',['run',['../classcom_1_1example_1_1mailserver_1_1network_1_1_client_handler.html#ae8b7a69be553da5fffd4df1afc7fde35',1,'com.example.mailserver.network.ClientHandler.run()'],['../classcom_1_1example_1_1mailserver_1_1network_1_1_multi_threaded_server.html#a1ddd0dfd6944302cb219a6b1d033304f',1,'com.example.mailserver.network.MultiThreadedServer.run()']]]
+  ['updatestatus_0',['updateStatus',['../classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller.html#a619202a1fb14aa3883fea53b33a8da0b',1,'com::example::mailclient::controller::ClientController']]]
 ];

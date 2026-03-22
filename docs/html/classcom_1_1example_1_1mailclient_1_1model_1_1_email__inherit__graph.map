@@ -1,5 +1,5 @@
 <map id="com.example.mailclient.model.Email" name="com.example.mailclient.model.Email">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,196,485"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="62,5,140,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,87,103,123,98,122,100,92"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,207,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="62,5,150,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,46,108,81,104,79,104,50"/>
 </map>

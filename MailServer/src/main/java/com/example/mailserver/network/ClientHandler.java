@@ -28,7 +28,7 @@ public class ClientHandler implements Runnable{
     private final Socket clientSocket;
     private final List<String> registeredUsers;
     private final PersistenceManager pm;
-    private ServerController controller;
+    private final ServerController controller;
     public final Gson gson = new Gson();
 
 
@@ -62,10 +62,6 @@ public class ClientHandler implements Runnable{
             String req = in.readLine();
             if (req == null || req.isEmpty()) return;
 
-            Platform.runLater(() ->
-                    controller.addLog("NETWORK", "Request: " + req + " from " + clientSocket.getInetAddress())
-            );
-
             // --- Commands ---
             if (req.startsWith("CONNECT|"))
                 handleConnect(req, out);
@@ -96,11 +92,16 @@ public class ClientHandler implements Runnable{
      */
     private void handleConnect(String req, PrintWriter out) {
         String checkEmail = req.split("\\|")[1];
-        System.out.println("[LOG] Connection request from: " + checkEmail);
 
         if (isUserRegistered(checkEmail)) {
+            Platform.runLater(() ->
+                    controller.addLog("CONNECTION", "User " + checkEmail + " connected successfully.")
+            );
             sendResponse(out, "OK", "User verified");
         } else {
+            Platform.runLater(() ->
+                    controller.addLog("ERROR", "Connection failed: " + checkEmail + " not registered.")
+            );
             sendResponse(out, "ERROR", "User not found");
         }
     }
@@ -125,7 +126,7 @@ public class ClientHandler implements Runnable{
             String response = gson.toJson(inbox);
             out.println(response);
 
-            controller.addLog("LOG", "Find " + inbox.size() + " messages successfully in " + userEmail + " inbox.");
+            controller.addLog("NETWORK", "Find " + inbox.size() + " messages successfully in " + userEmail + " inbox.");
         } catch (Exception ex) {
             out.println("[]");
             System.err.println("[LOG] Get All error: " + ex.getMessage());
@@ -170,7 +171,7 @@ public class ClientHandler implements Runnable{
             }
 
             sendResponse(out, "OK", "Email sent successfully to all receivers!");
-            controller.addLog("LOG", "Email from "+ e.getSender() +" sent to " + e.getReceivers());
+            controller.addLog("INCOMING", "Email from "+ e.getSender() +" sent to " + e.getReceivers());
 
         } catch(Exception ex) {
             sendResponse(out, "ERROR", "Server Error (JSON): " + ex.getMessage());
@@ -207,7 +208,9 @@ public class ClientHandler implements Runnable{
             String jsonResponse = gson.toJson(newEmails);
             out.println(jsonResponse);
 
-            controller.addLog("LOG", "Sent " + newEmails.size() +" messages to " + userEmail);
+            if (!newEmails.isEmpty())
+                controller.addLog("OUTGOING", "Sent " + newEmails.size() +" messages to " + userEmail);
+
         } catch (Exception ex) {
             out.println("[]");
             System.err.println("[LOG] Receive Error: " + ex.getMessage());
@@ -234,7 +237,7 @@ public class ClientHandler implements Runnable{
                 if (removed) {
                     pm.saveInbox(userEmail, inbox);
                     sendResponse(out, "OK", "Email deleted successfully!");
-                    System.out.println("[LOG] Email "+ deleteID + " successfully deleted from " + userEmail + " inbox!");
+                    controller.addLog("STORAGE", "Email " + deleteID + " deleted for " + userEmail);
                 } else
                     sendResponse(out, "ERROR", "Email not found!");
             }

@@ -18,16 +18,8 @@ import java.util.List;
  * restarts. All file operations are synchronized to prevent race conditions.
  */
 public class PersistenceManager {
-    /**
-     * @brief The base directory where user data is stored.
-     */
     private static final String BASE_PATH = "server_data/";
 
-    /**
-     * @brief Constructs a new PersistenceManager.
-     *
-     * It ensures that the base storage directory exists, creating it if necessary.
-     */
     public PersistenceManager() {
         File dir = new File(BASE_PATH);
         if (!dir.exists()) dir.mkdir();

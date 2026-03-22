@@ -15,39 +15,20 @@ import javafx.scene.control.TableView;
  * handling the display of log events in a TableView.
  */
 public class ServerController {
-    /**
-     * @brief TableView to display log events.
-     */
     @FXML
     private TableView<LogEvent> logTable;
-    /**
-     * @brief TableColumn for the timestamp of a log event.
-     */
+
     @FXML
     private TableColumn<LogEvent, String> colTime;
-    /**
-     * @brief TableColumn for the type of a log event.
-     */
+
     @FXML
     private TableColumn<LogEvent, String> colType;
-    /**
-     * @brief TableColumn for the description of a log event.
-     */
+
     @FXML
     private TableColumn<LogEvent, String> colDesc;
 
-    /**
-     * @brief ObservableList to store and manage log data for the TableView.
-     */
     private final ObservableList<LogEvent> logData = FXCollections.observableArrayList();
 
-    /**
-     * @brief Initializes the controller.
-     *
-     * This method is automatically called after the FXML file has been loaded.
-     * It sets up the cell value factories for the table columns to bind them
-     * to the LogEvent properties.
-     */
     @FXML
     public void initialize() {
         colTime.setCellValueFactory(cellData -> cellData.getValue().timestampProperty());

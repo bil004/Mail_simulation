@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['email_0',['Email',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#ab987730db95f856750bf292d5748f909',1,'com.example.mailclient.model.Email.Email()'],['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a4e8ca3d186b974e10279cecc7a9e06ea',1,'com.example.mailclient.model.Email.Email(long id, String sender, List&lt; String &gt; receivers, String subject, String message, Date date)'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a837f630feae13d64dd202fd9b0ea72b5',1,'com.example.mailserver.model.Email.Email()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a7b10d0c5aa6708297b47f92e0bd9cf48',1,'com.example.mailserver.model.Email.Email(long id, String sender, List&lt; String &gt; receivers, String subject, String message, Date date)']]]
+  ['getdate_0',['getDate',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a4b69b201abd19b5ce96bf17538beb72f',1,'com::example::mailclient::model::Email']]],
+  ['getid_1',['getId',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a07e0c226e6dcd76336ac9bce02366c4e',1,'com::example::mailclient::model::Email']]],
+  ['getmessage_2',['getMessage',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a1e587560752012e6336c7d103831a4a8',1,'com::example::mailclient::model::Email']]],
+  ['getreceivers_3',['getReceivers',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a56e617c834aff9b6819cbbef4328bff7',1,'com::example::mailclient::model::Email']]],
+  ['getsender_4',['getSender',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#ac21ba841e769d643e6a3e902dcc2ff3c',1,'com::example::mailclient::model::Email']]],
+  ['getsubject_5',['getSubject',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#abe55fa608124516d0fc78d51c7c5ef6a',1,'com::example::mailclient::model::Email']]]
 ];

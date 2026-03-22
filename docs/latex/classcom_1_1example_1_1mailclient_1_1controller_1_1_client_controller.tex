@@ -1,14 +1,5 @@
 \doxysection{com.\+example.\+mailclient.\+controller.\+Client\+Controller Class Reference}
 \hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller}{}\label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
-
-
-Collaboration diagram for com.\+example.\+mailclient.\+controller.\+Client\+Controller\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=237pt]{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller__coll__graph}
-\end{center}
-\end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -26,6 +17,10 @@ void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_client
 void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a1db118b4cdd8daff98300b8084aecfc1}{on\+Delete\+Button\+Click}} ()
 \item 
 void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ac0861782c6967c64399b8c1635e5672e}{on\+Reply\+Button\+Click}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ab2386d55233ffa35c8467fc20513e4bf}{on\+Reply\+All\+Button\+Click}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ad6a38fdfba20acd08b156b5f3e1a5dfa}{on\+Forward\+Button\+Click}} ()
 \end{DoxyCompactItemize}
 
 
@@ -37,13 +32,13 @@ Controller for the main client view. Handles user interactions and communication
 \index{initialize@{initialize}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
 \doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a01c92ea8f87dbaed946508a70ddb2d87} 
-void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Initializes the controller class. This method is automatically called after the fxml file has been loaded. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a34881a789de15cf7c07d2d82416e5058}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!initUser@{initUser}}
 \index{initUser@{initUser}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
 \doxysubsubsection{\texorpdfstring{initUser()}{initUser()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a34881a789de15cf7c07d2d82416e5058} 
-void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+init\+User (\begin{DoxyParamCaption}\item[{String}]{user\+Email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+init\+User (\begin{DoxyParamCaption}\item[{String}]{user\+Email}{}\end{DoxyParamCaption})}
 
 Initializes the user\textquotesingle{}s email and loads their emails from the server. 
 \begin{DoxyParams}{Parameters}
@@ -54,25 +49,37 @@ Initializes the user\textquotesingle{}s email and loads their emails from the se
 \index{onDeleteButtonClick@{onDeleteButtonClick}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
 \doxysubsubsection{\texorpdfstring{onDeleteButtonClick()}{onDeleteButtonClick()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a1db118b4cdd8daff98300b8084aecfc1} 
-void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+Delete\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+Delete\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
-Handles the "{}\+Delete"{} button click. Deletes the selected email from the server. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a89227383141514fce117504ec2041d63}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!onNewEmailButtonClick@{onNewEmailButtonClick}}
+Handles the "{}\+Delete"{} button click. Deletes the selected email from the server. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ad6a38fdfba20acd08b156b5f3e1a5dfa}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!onForwardButtonClick@{onForwardButtonClick}}
+\index{onForwardButtonClick@{onForwardButtonClick}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
+\doxysubsubsection{\texorpdfstring{onForwardButtonClick()}{onForwardButtonClick()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ad6a38fdfba20acd08b156b5f3e1a5dfa} 
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+Forward\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Handles the "{}\+Forward"{} button click. Opens the compose window to forward the selected email. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a89227383141514fce117504ec2041d63}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!onNewEmailButtonClick@{onNewEmailButtonClick}}
 \index{onNewEmailButtonClick@{onNewEmailButtonClick}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
 \doxysubsubsection{\texorpdfstring{onNewEmailButtonClick()}{onNewEmailButtonClick()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a89227383141514fce117504ec2041d63} 
-void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+New\+Email\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+New\+Email\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
-Handles the "{}\+New Email"{} button click. Opens the compose window. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ac0861782c6967c64399b8c1635e5672e}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!onReplyButtonClick@{onReplyButtonClick}}
+Handles the "{}\+New Email"{} button click. Opens the compose window. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ab2386d55233ffa35c8467fc20513e4bf}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!onReplyAllButtonClick@{onReplyAllButtonClick}}
+\index{onReplyAllButtonClick@{onReplyAllButtonClick}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
+\doxysubsubsection{\texorpdfstring{onReplyAllButtonClick()}{onReplyAllButtonClick()}}
+{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ab2386d55233ffa35c8467fc20513e4bf} 
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+Reply\+All\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Handles the "{}\+Reply All"{} button click. Opens the compose window to reply to all recipients of the selected email. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ac0861782c6967c64399b8c1635e5672e}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!onReplyButtonClick@{onReplyButtonClick}}
 \index{onReplyButtonClick@{onReplyButtonClick}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
 \doxysubsubsection{\texorpdfstring{onReplyButtonClick()}{onReplyButtonClick()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_ac0861782c6967c64399b8c1635e5672e} 
-void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+Reply\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+on\+Reply\+Button\+Click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 Handles the "{}\+Reply"{} button click. Opens the compose window to reply to the selected email. \Hypertarget{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a619202a1fb14aa3883fea53b33a8da0b}\index{com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}!updateStatus@{updateStatus}}
 \index{updateStatus@{updateStatus}!com.example.mailclient.controller.ClientController@{com.example.mailclient.controller.ClientController}}
 \doxysubsubsection{\texorpdfstring{updateStatus()}{updateStatus()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailclient_1_1controller_1_1_client_controller_a619202a1fb14aa3883fea53b33a8da0b} 
-void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+update\+Status (\begin{DoxyParamCaption}\item[{boolean}]{online}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void com.\+example.\+mailclient.\+controller.\+Client\+Controller.\+update\+Status (\begin{DoxyParamCaption}\item[{boolean}]{online}{}\end{DoxyParamCaption})}
 
 Updates the server status indicator. 
 \begin{DoxyParams}{Parameters}
@@ -83,4 +90,4 @@ Updates the server status indicator.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Mail\+Client/src/main/java/com/example/mailclient/controller/Client\+Controller.\+java\end{DoxyCompactItemize}
+C\+:/\+Users/bilal/\+Desktop/\+Files/\+Unito/3/\+Prog3/\+Mail\+\_\+simulation/\+Mail\+Client/src/main/java/com/example/mailclient/controller/Client\+Controller.\+java\end{DoxyCompactItemize}

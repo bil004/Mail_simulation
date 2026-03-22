@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 /**
  * @class MultiThreadedServer
- * @brief A multi-threaded server for handling client connections.
+ * @brief A multithreaded server for handling client connections.
  *
  * This class sets up a `ServerSocket` to listen for incoming client connections
  * on a specified port. For each connection, it creates a new `ClientHandler`
@@ -66,7 +66,6 @@ public class MultiThreadedServer implements Runnable {
 
             while (isRunning) {
                 Socket client = serverSocket.accept();
-                Platform.runLater(() -> controller.addLog("CONNECTION", "New connection from: " + client.getInetAddress()));
                 threadPool.execute(new ClientHandler(client, registeredUsers, pm, controller));
             }
         } catch (IOException e) {

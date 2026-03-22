@@ -19,7 +19,6 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Controller for the email composition window.
@@ -108,7 +107,7 @@ public class ComposeController {
                     if (response != null && response.startsWith("OK")) {
                         showInfo("Success", "Email sent successfully to the receiver.");
                         closeWindow();
-                    } else showError("Errore Server", response != null ? response.split("\\|")[1] : "Errore ignoto");
+                    } else showError("Server Error", response != null ? response.split("\\|")[1] : "Undefined Error on sending email.");
                 });
 
             } catch (Exception e) {
@@ -121,20 +120,38 @@ public class ComposeController {
      * Sets up the compose window for a reply.
      * @param originalEmail The original email to reply to.
      * @param myEmail The email of the user replying.
+     * @param all true for the Reply-All option, false for a single user Reply.
      */
-    public void setupReply(Email originalEmail, String myEmail) {
+    public void setupReply(Email originalEmail, String myEmail, boolean all) {
         this.senderEmail = myEmail;
-        txtTo.setText(originalEmail.getSender());
 
-        if (!originalEmail.getSubject().toLowerCase().startsWith("re:")) {
-            txtSubject.setText("Re: " + originalEmail.getSubject());
+        if (all) {
+            List<String> recipients = new java.util.ArrayList<>();
+            recipients.add(originalEmail.getSender());
+            recipients.addAll(originalEmail.getReceivers());
+            recipients.remove(myEmail);
+            txtTo.setText(String.join(", ", recipients));
         } else {
-            txtSubject.setText(originalEmail.getSubject());
+            txtTo.setText(originalEmail.getSender());
         }
 
-        txtMessage.setText("\n\n" + "--- Response to " + originalEmail.getSender() + " ---" + "\n" + originalEmail.getMessage());
-        txtMessage.requestFocus();
-        txtMessage.selectRange(0, 0);
+        String sub = originalEmail.getSubject();
+        txtSubject.setText(sub.toLowerCase().startsWith("re:") ? sub : "Re: " + sub);
+        txtMessage.setText("\n\n--- Replying to " + originalEmail.getSender() + " ---\n" + originalEmail.getMessage());
+    }
+
+    /**
+     * Sets up the compose window for forwarding an email.
+     * @param originalEmail The original email to forward.
+     * @param myEmail The email of the user forwarding the message.
+     */
+    public void setupForward(Email originalEmail, String myEmail) {
+        this.senderEmail = myEmail;
+        txtTo.setText("");
+
+        String sub = originalEmail.getSubject();
+        txtSubject.setText(sub.toLowerCase().startsWith("fwd:") ? sub : "Fwd: " + sub);
+        txtMessage.setText("\n\n--- Forwarded message ---\nFrom: " + originalEmail.getSender() + "\n" + originalEmail.getMessage());
     }
 
     /**
@@ -186,7 +203,7 @@ public class ComposeController {
      */
     private boolean isServerReachable() {
         try (Socket s = new Socket()) {
-            s.connect(new InetSocketAddress("localhost", 8080), 500); // Timeout 500ms
+            s.connect(new InetSocketAddress("localhost", 8080), 500);
             return true;
         } catch (IOException e) {
             return false;

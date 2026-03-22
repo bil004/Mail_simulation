@@ -159,7 +159,6 @@ public class ClientController {
                  PrintWriter out = new PrintWriter(s.getOutputStream(), true);
                  BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()))) {
 
-                // Inviamo il comando DELETE|email|id
                 out.println("DELETE|" + userEmail + "|" + email.getId());
 
                 String response = in.readLine();
@@ -171,12 +170,12 @@ public class ClientController {
                         lblFrom.setText("");
                         lblSubject.setText("");
                     } else {
-                        showError("Errore eliminazione", "Il server non ha potuto eliminare la mail.");
+                        showError("Delete Error!", "The server can't delete this mail.");
                     }
                 });
 
             } catch (Exception e) {
-                Platform.runLater(() -> showError("Errore Connessione", "Impossibile contattare il server per eliminare la mail."));
+                Platform.runLater(() -> showError("Connection Error", "Impossible contact the server for delete this mail."));
             }
         }).start();
     }
@@ -188,31 +187,65 @@ public class ClientController {
     @FXML
     protected void onReplyButtonClick() {
         Email selected = emailListView.getSelectionModel().getSelectedItem();
+        // Usiamo l'helper centralizzato passando la modalità "REPLY"
+        openComposeWindow("Reply", selected, "REPLY");
+    }
 
+    /**
+     * Handles the "Reply All" button click.
+     * Opens the compose window to reply to all recipients of the selected email.
+     */
+    @FXML
+    protected void onReplyAllButtonClick() {
+        Email selected = emailListView.getSelectionModel().getSelectedItem();
+        openComposeWindow("Reply All", selected, "REPLY_ALL");
+    }
+
+    /**
+     * Handles the "Forward" button click.
+     * Opens the compose window to forward the selected email.
+     */
+    @FXML
+    protected void onForwardButtonClick() {
+        Email selected = emailListView.getSelectionModel().getSelectedItem();
+        openComposeWindow("Forward Message", selected, "FORWARD");
+    }
+
+    /**
+     * Opens the compose window in a specific mode (Reply, Reply All, Forward).
+     * @param title The title for the new window.
+     * @param selected The email to act upon.
+     * @param mode The mode of composition ("REPLY", "REPLY_ALL", "FORWARD").
+     */
+    private void openComposeWindow(String title, Email selected, String mode) {
         if (selected == null) {
-            showError("Nessuna selezione", "Seleziona una mail a cui rispondere.");
+            showError("No selection", "Please select an email first.");
             return;
         }
-
         if (offline) {
-            showError("Server Offline", "Non puoi rispondere se il server è offline.");
+            showError("Server Offline", "This action is not available while offline.");
             return;
         }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/mailclient/view/compose-view.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Rispondi a: " + selected.getSender());
+            stage.setTitle(title);
             stage.setScene(new Scene(loader.load()));
 
             ComposeController controller = loader.getController();
-            controller.setupReply(selected, this.userEmail);
+
+            if (mode.equals("REPLY")) {
+                controller.setupReply(selected, this.userEmail, false);
+            } else if (mode.equals("REPLY_ALL")) {
+                controller.setupReply(selected, this.userEmail, true);
+            } else if (mode.equals("FORWARD")) {
+                controller.setupForward(selected, this.userEmail);
+            }
 
             stage.show();
-
         } catch (IOException e) {
-            e.printStackTrace();
-            showError("Errore", "Impossibile aprire la finestra di risposta.");
+            showError("Error", "Unable to open the composition window.");
         }
     }
 
@@ -239,7 +272,7 @@ public class ClientController {
                     });
                 }
             } catch (Exception e) {
-                System.err.println("[CLIENT LOG] Errore caricamento mail: " + e.getMessage());
+                System.err.println("[CLIENT LOG] Error to load email: " + e.getMessage());
                 javafx.application.Platform.runLater(() -> updateStatus(false));
             }
         }).start();
@@ -280,6 +313,10 @@ public class ClientController {
         checkThread.start();
     }
 
+    /**
+     * Checks for new emails on the server since the last check.
+     * It retrieves the ID of the latest email present locally and asks the server for any subsequent emails.
+     */
     private void checkForNewEmails() {
         new Thread(() -> {
             long lastId = emails.stream().mapToLong(Email::getId).max().orElse(0);
@@ -303,7 +340,7 @@ public class ClientController {
                     });
                 }
             } catch (IOException e) {
-                System.err.println("[DEBUG] Errore socket: " + e.getMessage());
+                System.err.println("[DEBUG] Socket error: " + e.getMessage());
             }
         }).start();
     }

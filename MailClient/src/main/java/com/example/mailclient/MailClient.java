@@ -38,7 +38,6 @@ public class MailClient extends Application {
 
         while (!loggedIn) {
             TextInputDialog dialog = new TextInputDialog();
-            dialog.getEditor().setPromptText("yourname@gmail.com");
             dialog.setTitle("Login Mail Client");
             dialog.setHeaderText("Welcome to the Mail system");
             dialog.setContentText("Insert your email address:");
@@ -60,7 +59,6 @@ public class MailClient extends Application {
                     loggedEmail = emailInput;
                     loggedIn = true;
                 } else {
-
                     showError("Access Denied", "User not found.");
                 }
             } catch (IOException e) {

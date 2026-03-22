@@ -12,9 +12,16 @@
         <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <items>
                 <Button fx:id="btnNewEmail" mnemonicParsing="false" onAction="#onNewEmailButtonClick" text="➕ New" />
+
                 <Separator orientation="VERTICAL" />
-                <Button fx:id="btnReply" mnemonicParsing="false" text="↩ Reply" onAction="#onReplyButtonClick"/>
-                <Button fx:id="btnDelete" mnemonicParsing="false" style="-fx-text-fill: red;" text="🗑 Delete" onAction="#onDeleteButtonClick"/>
+
+                <Button fx:id="btnReply" mnemonicParsing="false" onAction="#onReplyButtonClick" text="↩ Reply" />
+                <Button fx:id="btnReplyAll" mnemonicParsing="false" onAction="#onReplyAllButtonClick" text="↩ All" />
+                <Button fx:id="btnForward" mnemonicParsing="false" onAction="#onForwardButtonClick" text="➡ Forward" />
+
+                <Separator orientation="VERTICAL" />
+
+                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#onDeleteButtonClick" style="-fx-text-fill: red;" text="🗑 Delete" />
             </items>
         </ToolBar>
     </top>

@@ -1,12 +1,4 @@
 var searchData=
 [
-  ['getdate_0',['getDate',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a4b69b201abd19b5ce96bf17538beb72f',1,'com.example.mailclient.model.Email.getDate()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a43d09ef9c75bef7179ef249ab257b2b7',1,'com.example.mailserver.model.Email.getDate()']]],
-  ['getemail_1',['getEmail',['../classcom_1_1example_1_1mailserver_1_1model_1_1_account.html#aa4ef1e81c9dc3512c9f86e5e83fa7a57',1,'com::example::mailserver::model::Account']]],
-  ['getid_2',['getId',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a07e0c226e6dcd76336ac9bce02366c4e',1,'com.example.mailclient.model.Email.getId()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#adad4c891178f64ad8518b5e6e12c7702',1,'com.example.mailserver.model.Email.getId()']]],
-  ['getinbox_3',['getInbox',['../classcom_1_1example_1_1mailserver_1_1model_1_1_account.html#a6303a0733993ba3078c3fba03fe43614',1,'com::example::mailserver::model::Account']]],
-  ['getmessage_4',['getMessage',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a1e587560752012e6336c7d103831a4a8',1,'com.example.mailclient.model.Email.getMessage()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a8e73ab0537bf2a50edfcbe009780ef88',1,'com.example.mailserver.model.Email.getMessage()']]],
-  ['getreceivers_5',['getReceivers',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#a56e617c834aff9b6819cbbef4328bff7',1,'com.example.mailclient.model.Email.getReceivers()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a8674f172b223e78227e4511bcacd5399',1,'com.example.mailserver.model.Email.getReceivers()']]],
-  ['getsender_6',['getSender',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#ac21ba841e769d643e6a3e902dcc2ff3c',1,'com.example.mailclient.model.Email.getSender()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a28471f48ff78abab6d9c3ba6f4a9889f',1,'com.example.mailserver.model.Email.getSender()']]],
-  ['getsubject_7',['getSubject',['../classcom_1_1example_1_1mailclient_1_1model_1_1_email.html#abe55fa608124516d0fc78d51c7c5ef6a',1,'com.example.mailclient.model.Email.getSubject()'],['../classcom_1_1example_1_1mailserver_1_1model_1_1_email.html#a62a61cbc9cc301cf9485f80f981c601d',1,'com.example.mailserver.model.Email.getSubject()']]],
-  ['getting_20started_8',['🚀 Getting Started',['../md__r_e_a_d_m_e.html#autotoc_md8',1,'']]]
+  ['how_20to_20run_0',['How to Run',['../md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md10',1,'']]]
 ];

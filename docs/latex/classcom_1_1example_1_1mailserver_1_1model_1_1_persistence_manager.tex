@@ -5,20 +5,9 @@
 Manages the loading and saving of user data to the file system.  
 
 
-
-
-Collaboration diagram for com.\+example.\+mailserver.\+model.\+Persistence\+Manager\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=227pt]{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager__coll__graph}
-\end{center}
-\end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_a7cdd00397f496998a8af75cb26401347}{Persistence\+Manager}} ()
-\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager}{Persistence\+Manager}. \end{DoxyCompactList}\item 
 synchronized List$<$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}} $>$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_ab4bcce5688be95ecdf1551ec8622f1eb}{load\+Inbox}} (String user\+Email)
 \begin{DoxyCompactList}\small\item\em Loads a user\textquotesingle{}s inbox from a JSON file. \end{DoxyCompactList}\item 
 synchronized void \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_a14844461e31d69090c158187ec7e0ca3}{save\+Inbox}} (String user\+Email, List$<$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}} $>$ inbox)
@@ -30,25 +19,12 @@ Manages the loading and saving of user data to the file system.
 
 This class handles the serialization and deserialization of user inboxes to and from JSON files. It ensures that data is persisted across server restarts. All file operations are synchronized to prevent race conditions. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_a7cdd00397f496998a8af75cb26401347}\index{com.example.mailserver.model.PersistenceManager@{com.example.mailserver.model.PersistenceManager}!PersistenceManager@{PersistenceManager}}
-\index{PersistenceManager@{PersistenceManager}!com.example.mailserver.model.PersistenceManager@{com.example.mailserver.model.PersistenceManager}}
-\doxysubsubsection{\texorpdfstring{PersistenceManager()}{PersistenceManager()}}
-{\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_a7cdd00397f496998a8af75cb26401347} 
-com.\+example.\+mailserver.\+model.\+Persistence\+Manager.\+Persistence\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Constructs a new \doxylink{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager}{Persistence\+Manager}. 
-
-It ensures that the base storage directory exists, creating it if necessary. 
-
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_ab4bcce5688be95ecdf1551ec8622f1eb}\index{com.example.mailserver.model.PersistenceManager@{com.example.mailserver.model.PersistenceManager}!loadInbox@{loadInbox}}
 \index{loadInbox@{loadInbox}!com.example.mailserver.model.PersistenceManager@{com.example.mailserver.model.PersistenceManager}}
 \doxysubsubsection{\texorpdfstring{loadInbox()}{loadInbox()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_ab4bcce5688be95ecdf1551ec8622f1eb} 
-synchronized List$<$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}} $>$ com.\+example.\+mailserver.\+model.\+Persistence\+Manager.\+load\+Inbox (\begin{DoxyParamCaption}\item[{String}]{user\+Email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+synchronized List$<$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}} $>$ com.\+example.\+mailserver.\+model.\+Persistence\+Manager.\+load\+Inbox (\begin{DoxyParamCaption}\item[{String}]{user\+Email}{}\end{DoxyParamCaption})}
 
 
 
@@ -68,7 +44,7 @@ A list of \doxylink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}
 \index{saveInbox@{saveInbox}!com.example.mailserver.model.PersistenceManager@{com.example.mailserver.model.PersistenceManager}}
 \doxysubsubsection{\texorpdfstring{saveInbox()}{saveInbox()}}
 {\footnotesize\ttfamily \label{classcom_1_1example_1_1mailserver_1_1model_1_1_persistence_manager_a14844461e31d69090c158187ec7e0ca3} 
-synchronized void com.\+example.\+mailserver.\+model.\+Persistence\+Manager.\+save\+Inbox (\begin{DoxyParamCaption}\item[{String}]{user\+Email}{, }\item[{List$<$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}} $>$}]{inbox}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+synchronized void com.\+example.\+mailserver.\+model.\+Persistence\+Manager.\+save\+Inbox (\begin{DoxyParamCaption}\item[{String}]{user\+Email}{, }\item[{List$<$ \mbox{\hyperlink{classcom_1_1example_1_1mailserver_1_1model_1_1_email}{Email}} $>$}]{inbox}{}\end{DoxyParamCaption})}
 
 
 
@@ -87,4 +63,4 @@ The list of emails is serialized to JSON with pretty printing for readability. T
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Mail\+Server/src/main/java/com/example/mailserver/model/Persistence\+Manager.\+java\end{DoxyCompactItemize}
+C\+:/\+Users/bilal/\+Desktop/\+Files/\+Unito/3/\+Prog3/\+Mail\+\_\+simulation/\+Mail\+Server/src/main/java/com/example/mailserver/model/Persistence\+Manager.\+java\end{DoxyCompactItemize}

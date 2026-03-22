@@ -24,12 +24,33 @@
 */
 var NAVTREE =
 [
-  [ "Mail Project", "index.html", ]
+  [ "Mail Simulation", "index.html", [
+    [ "Client-Server Email System", "index.html", "index" ],
+    [ "📬 JavaFX Mail System - Prog3 Project", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html", [
+      [ "🏗️ Architecture & Technologies", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md2", null ],
+      [ "📧 Mail Client Features", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md4", null ],
+      [ "🖥️ Mail Server Features", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md6", null ],
+      [ "🚀 Getting Started", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md8", [
+        [ "Prerequisites", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md9", null ],
+        [ "How to Run", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md10", null ]
+      ] ],
+      [ "📝 Exam Information", "md__c_1_2_users_2bilal_2_desktop_2_files_2_unito_23_2_prog3_2_mail__simulation_2_r_e_a_d_m_e.html#autotoc_md12", null ]
+    ] ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
+      ] ]
+    ] ]
+  ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
