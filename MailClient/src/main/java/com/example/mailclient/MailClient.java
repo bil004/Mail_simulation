@@ -111,7 +111,7 @@ public class MailClient extends Application {
     }
 
     /**
-     * The main method of the application.
+     * @brief The main method of the application.
      * @param args Command line arguments.
      */
     public static void main(String[] args) {

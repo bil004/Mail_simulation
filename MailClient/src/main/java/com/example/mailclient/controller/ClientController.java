@@ -346,7 +346,7 @@ public class ClientController {
     }
 
     /**
-     * Shows a graphical error popup.
+     * @brief Shows a graphical error popup.
      * @param title The title of the error dialog.
      * @param content The content message of the error dialog.
      */

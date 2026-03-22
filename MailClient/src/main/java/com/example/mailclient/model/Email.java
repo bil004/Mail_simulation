@@ -128,7 +128,7 @@ public class Email implements Serializable {
     }
 
     /**
-     * Sets the date the email was sent.
+     * @brief Sets the date the email was sent.
      * @param date The send date.
      */
     public void setDate(Date date) {

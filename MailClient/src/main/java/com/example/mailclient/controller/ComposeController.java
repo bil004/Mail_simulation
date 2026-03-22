@@ -21,8 +21,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Controller for the email composition window.
- * Handles sending new emails and replying to existing ones.
+ * @brief Controller for the email composition window.
+ * @details Handles sending new emails and replying to existing ones.
  */
 public class ComposeController {
     @FXML
@@ -155,7 +155,7 @@ public class ComposeController {
     }
 
     /**
-     * Handles the "Cancel" button click.
+     * @brief Handles the "Cancel" button click.
      * Closes the compose window.
      */
     @FXML
@@ -164,7 +164,7 @@ public class ComposeController {
     }
 
     /**
-     * Closes the current window.
+     * @brief Closes the current window.
      */
     private void closeWindow() {
         Stage stage = (Stage) txtTo.getScene().getWindow();
@@ -198,7 +198,7 @@ public class ComposeController {
     }
 
     /**
-     * Checks if the server is reachable.
+     * @brief Checks if the server is reachable.
      * @return true if the server is reachable, false otherwise.
      */
     private boolean isServerReachable() {

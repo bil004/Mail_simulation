@@ -1,3 +1,6 @@
+/**
+ * @brief Module definition for the MailClient application.
+ */
 module com.example.mailclient {
     requires javafx.controls;
     requires javafx.fxml;

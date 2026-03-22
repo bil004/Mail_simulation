@@ -13,7 +13,7 @@ public class EmailValidator {
     private static final Pattern p = Pattern.compile(EMAIL_PATTERN);
 
     /**
-     * Validates an email address using a regex pattern.
+     * @brief Validates an email address using a regex pattern.
      * @param email The email address to validate.
      * @return true if the email is valid, false otherwise.
      */
