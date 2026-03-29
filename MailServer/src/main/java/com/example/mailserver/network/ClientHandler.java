@@ -143,7 +143,6 @@ public class ClientHandler implements Runnable{
      */
     private void handleSend(String jsonEmail, PrintWriter out) {
         try {
-            // Reflection with Gson (for decode the email)
             Email e = gson.fromJson(jsonEmail, Email.class);
             e.setId(System.currentTimeMillis());
 
@@ -154,14 +153,12 @@ public class ClientHandler implements Runnable{
                     invalidUsers.add(receiver);
             }
 
-            // Stop the program and report the invalid users
             if (!invalidUsers.isEmpty()) {
                 sendResponse(out, "ERROR", "Invalid email address: " + String.join(", ", invalidUsers));
                 System.err.println("[LOG] Failed delivery from: " + e.getSender());
                 return;
             }
 
-            // Mutual exclusion and Persistence for saving emails on receivers inbox
             for (String receiver: e.getReceivers()) {
                 synchronized (pm) {
                     List<Email> inbox = pm.loadInbox(receiver);

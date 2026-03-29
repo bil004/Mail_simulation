@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.application.Platform;
 
 /**
  * @class ServerController
@@ -48,6 +49,6 @@ public class ServerController {
      * @param message The log message to be displayed.
      */
     public void addLog(String type, String message) {
-        javafx.application.Platform.runLater(() -> logData.add(new LogEvent(type, message)));
+        Platform.runLater(() -> logData.add(new LogEvent(type, message)));
     }
 }

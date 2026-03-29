@@ -138,7 +138,6 @@ public class ClientController {
             return;
         }
 
-        // Chiediamo conferma (buona pratica di UX)
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Delete Mail");
         confirm.setHeaderText("You're going to delete this mail.");
@@ -260,8 +259,7 @@ public class ClientController {
 
                 out.println("GET_ALL|" + userEmail);
                 String jsonResponse = in.readLine();
-
-                // Aggiorna il file JSON e la UI dell'app
+                
                 if (jsonResponse != null) {
                     Email[] receivedArray = gson.fromJson(jsonResponse, Email[].class);
                     List<Email> receivedList = List.of(receivedArray);

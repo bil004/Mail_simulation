@@ -34,7 +34,7 @@ public class PersistenceManager {
      * @param userEmail The email address of the user whose inbox is to be loaded.
      * @return A list of Email objects representing the user's inbox.
      */
-    public synchronized List<Email> loadInbox(String userEmail) {
+    public List<Email> loadInbox(String userEmail) {
         File f = new File(BASE_PATH + userEmail + ".json");
         if (!f.exists()) return new ArrayList<>();
 
@@ -59,12 +59,12 @@ public class PersistenceManager {
      * @param inbox The list of Email objects to be saved.
      */
     public synchronized void saveInbox(String userEmail, List<Email> inbox) {
-        try (Writer writer = new FileWriter(BASE_PATH + userEmail + ".json")) {
+        try (Writer w = new FileWriter(BASE_PATH + userEmail + ".json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(inbox, writer);
+            gson.toJson(inbox, w);
         }
         catch (IOException e) {
-            System.err.println("[SERVER] FATAL ERROR: " + e.getMessage());
+            System.err.println("[SERVER] FATAL ERROR for saving the inbox: " + e.getMessage());
         }
     }
 }
