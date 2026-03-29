@@ -6,7 +6,7 @@ This repository contains the final laboratory project for the **Programmazione I
 
 ## 🏗️ Architecture & Technologies
 
-* **Language & Framework:** Java 23 and JavaFX.
+* **Language & Framework:** Java 17/21 and JavaFX.
 * **Modular Design:** Both applications are organized into packages to ensure modularity.
 * **Design Pattern:** Strict adherence to the **Model-View-Controller (MVC)** pattern.
     * No direct communication exists between Views and Models.
@@ -55,7 +55,7 @@ The Mail Server acts as the central hub for email routing and storage:
 ## 🚀 Getting Started
 
 ### Prerequisites
-* **JDK 23** or higher.
+* **JDK 17/21** or higher.
 * **IntelliJ IDEA Ultimate** (Recommended).
 * **Maven** for dependency management (Gson, JavaFX).
 
@@ -64,9 +64,3 @@ The Mail Server acts as the central hub for email routing and storage:
 2. Open **MailServer** and **MailClient** as two separate IntelliJ IDEA projects.
 3. Launch the **Mail Server** first.
 4. Launch one or more instances of the **Mail Client** and log in with a pre-configured email address (e.g., `giorgio@gmail.com`).
-
----
-
-## 📝 Exam Information
-* **Oral Discussion Date:** March 25, 2026.
-* **Project Goals:** Demonstrate scalability, efficient resource management, and clean MVC implementation.
